@@ -4,7 +4,7 @@ export interface Dict {
   meta: { title: string; description: string; skip: string }
   worldLabel: string
   worlds: Record<World, string>
-  nav: { chapter: string; sound: string }
+  nav: { chapter: string; sound: string; contact: string }
   hero: { role: string; tagline: string; scroll: string }
   about: { title: string; stepLabel: string; steps: { k: string; t: string; d: string }[] }
   chapters: Record<string, string>

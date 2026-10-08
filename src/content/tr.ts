@@ -8,7 +8,7 @@ export const tr: Dict = {
   },
   worldLabel: 'Dünya',
   worlds: { space: 'Açık Uzay', crystal: 'Kristal Diyarı', obsidian: 'Obsidyen Kaldera', village: 'Minik Köy' },
-  nav: { chapter: 'Bölüm', sound: 'Ses' },
+  nav: { chapter: 'Bölüm', sound: 'Ses', contact: 'İletişim' },
   hero: {
     role: 'Oyun Tasarımcısı & Bilgisayar Mühendisi',
     tagline: 'Bulmacaları, ekonomiyi ve oyun hissini tasarlarım — sonra da kodlarım.',

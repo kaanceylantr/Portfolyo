@@ -543,3 +543,9 @@ main:focus { outline: none; }
 .social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .sheet-row { background: var(--glass-solid); }
 .foot .social + .ghost { margin-top: 10px; }
+
+/* ---------- contact ---------- */
+.hud-contact { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; padding: 8px 16px; border-radius: 999px; text-decoration: none; background: var(--accent); color: var(--accent-ink); }
+.hud-contact:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.hero-links { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 600px) { .hud-chapter { display: none; } .hud { gap: 10px; } .hud .lang { margin-left: 0; } .hud-contact { margin-right: auto; } }

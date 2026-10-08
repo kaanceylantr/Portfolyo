@@ -8,7 +8,7 @@ export const en: Dict = {
   },
   worldLabel: 'World',
   worlds: { space: 'Open Space', crystal: 'Crystal Realm', obsidian: 'Obsidian Caldera', village: 'Tiny Village' },
-  nav: { chapter: 'Chapter', sound: 'Sound' },
+  nav: { chapter: 'Chapter', sound: 'Sound', contact: 'Contact' },
   hero: {
     role: 'Game Designer & Computer Engineer',
     tagline: 'I design puzzles, economies and feel — then I build them.',
