@@ -46,6 +46,7 @@ export const tr: Dict = {
     prime: 'Prime Path',
     experience: 'Tempo',
     skills: 'Perkler',
+    interests: 'Dinlenme odası',
     projects: 'Yan Görevler',
   },
   ach: {
@@ -54,6 +55,9 @@ export const tr: Dict = {
       explorer: 'Kâşif — kaydırmaya başladın',
       student: 'Hızlı Öğrenen — eğitimi bitirdin',
       bridge: 'Köprü Ustası — çizimin topu eve taşıdı',
+      pianist: 'Piyanist — küçük bir melodi çaldın',
+      striker: 'Golcü — üst üste 10 vuruş',
+      poet: 'Şair — son dizeye kadar okudun',
       fullbuild: 'Tam Build — dört perkin hepsi kuşanıldı',
       solver: 'Bulmaca Çözücü — bir Prime Path seviyesini çözdün',
     },
@@ -170,6 +174,30 @@ export const tr: Dict = {
     win: 'Başardı! Çizgin topu eve taşıdı.',
     lose: 'Top düştü. Çizgini düzelt ve tekrar bırak.',
     stuck: 'Top takıldı. Daha dik bir çizgi dene.',
+  },
+  interests: {
+    eyebrow: 'Dinlenme odası',
+    title: 'Seviyeler arasında yaptıklarım',
+    sub: 'Bulmacalar bana kalıpları sevmeyi öğretti. Müzik, futbol ve şiir ise insan kalmamı sağlıyor.',
+    tags: ['Mobil bulmaca oyunları', 'Seviye tasarımını çözümlemek', 'Rekabetçi MOBA’lar', 'Piyano', 'Şarkı yazımı', 'Şiir', 'Futbol'],
+    piano: { title: 'Piyano', hint: 'Tuşlara dokun ya da A S D F G H J K ve W E T Y U tuşlarını kullan. Ses otomatik açılır.' },
+    keepy: {
+      title: 'Top sektirme',
+      hint: 'Topu havada tutmak için ona dokun. Yön vermek için merkezden uzak vur.',
+      streak: (n) => `Üst üste ${n}`,
+      best: (n) => `En iyi ${n}`,
+      drop: 'Düştü! Yeniden başlamak için dokun.',
+    },
+    poem: {
+      title: 'Bir şiir, harf harf',
+      lines: [
+        'Her yol bir asalla başlar:',
+        'bölünmeyen bir sayı,',
+        'yine de sonunu bulur.',
+        'Ben de öyle biri olmaya çalışıyorum.',
+      ],
+      note: 'Yavaş kaydır. Şiirler, kelimelerden yapılmış seviyelerdir.',
+    },
   },
   exp: {
     eyebrow: 'Deneyim',

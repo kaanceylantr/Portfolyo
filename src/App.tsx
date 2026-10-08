@@ -14,6 +14,7 @@ const PrimePath = lazy(() => import('./sections/PrimePath'))
 const Experience = lazy(() => import('./sections/Experience'))
 const Skills = lazy(() => import('./sections/Skills'))
 const Projects = lazy(() => import('./sections/Projects'))
+const Interests = lazy(() => import('./sections/Interests'))
 
 export default function App() {
   const setChapter = useStore((s) => s.setChapter)
@@ -71,6 +72,11 @@ export default function App() {
         <div className="chapter-slot" data-chapter="projects">
           <Suspense fallback={<div style={{ minHeight: '100svh' }} />}>
             <Projects />
+          </Suspense>
+        </div>
+        <div className="chapter-slot" data-chapter="interests">
+          <Suspense fallback={<div style={{ minHeight: '100svh' }} />}>
+            <Interests />
           </Suspense>
         </div>
       </main>

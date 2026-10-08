@@ -46,6 +46,7 @@ export const en: Dict = {
     prime: 'Prime Path',
     experience: 'Pacing',
     skills: 'Perks',
+    interests: 'Rest room',
     projects: 'Side Quests',
   },
   ach: {
@@ -54,6 +55,9 @@ export const en: Dict = {
       explorer: 'Explorer — you started scrolling',
       student: 'Quick Learner — tutorial complete',
       bridge: 'Bridge Builder — your drawing carried the ball home',
+      pianist: 'Pianist — you played a little melody',
+      striker: 'Striker — 10 touches in a row',
+      poet: 'Poet — you read to the last line',
       fullbuild: 'Full Build — all four perks equipped',
       solver: 'Puzzle Solver — you cracked a Prime Path level',
     },
@@ -170,6 +174,30 @@ export const en: Dict = {
     win: 'It made it! Your line carried the ball home.',
     lose: 'The ball fell. Adjust your line and drop again.',
     stuck: 'The ball got stuck. Try a steeper line.',
+  },
+  interests: {
+    eyebrow: 'Rest room',
+    title: 'What I do between levels',
+    sub: 'Puzzles taught me to love patterns. Music, football and poetry keep me human.',
+    tags: ['Mobile puzzle games', 'Deconstructing level design', 'Competitive MOBAs', 'Piano', 'Songwriting', 'Poetry', 'Football'],
+    piano: { title: 'Piano', hint: 'Tap the keys, or use A S D F G H J K and W E T Y U. Sound turns on automatically.' },
+    keepy: {
+      title: 'Keepy-uppy',
+      hint: 'Tap the ball to keep it in the air. Hit it off-centre to steer.',
+      streak: (n) => `${n} in a row`,
+      best: (n) => `Best ${n}`,
+      drop: 'Dropped! Tap to start again.',
+    },
+    poem: {
+      title: 'A poem, one letter at a time',
+      lines: [
+        'Every path begins at a prime —',
+        'a number that cannot be divided,',
+        'yet still finds its way to the end.',
+        'I am learning to be that kind of one.',
+      ],
+      note: 'Scroll slowly. Poems are levels made of words.',
+    },
   },
   exp: {
     eyebrow: 'Experience',

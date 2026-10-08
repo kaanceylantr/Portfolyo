@@ -68,6 +68,15 @@ export interface Dict {
     lose: string
     stuck: string
   }
+  interests: {
+    eyebrow: string
+    title: string
+    sub: string
+    tags: string[]
+    piano: { title: string; hint: string }
+    keepy: { title: string; hint: string; streak: (n: number) => string; best: (n: number) => string; drop: string }
+    poem: { title: string; lines: string[]; note: string }
+  }
   exp: {
     eyebrow: string
     title: string
