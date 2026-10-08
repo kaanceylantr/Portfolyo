@@ -192,7 +192,7 @@ export const en: Dict = {
     title: 'What I do between levels',
     sub: 'Puzzles taught me to love patterns. Music, football and poetry keep me human.',
     tags: ['Mobile puzzle games', 'Deconstructing level design', 'Competitive MOBAs', 'Piano', 'Songwriting', 'Poetry', 'Football'],
-    piano: { title: 'Piano', hint: 'Tap the keys, or use A S D F G H J K and W E T Y U. Sound turns on automatically.' },
+    piano: { title: 'Piano', hint: 'Tap keys, or use keyboard (2 octaves). Sound turns on automatically.' },
     keepy: {
       title: 'Keepy-uppy',
       hint: 'Tap the ball to keep it in the air. Hit it off-centre to steer.',

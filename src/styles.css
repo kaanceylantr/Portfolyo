@@ -1,11 +1,13 @@
 * { box-sizing: border-box; margin: 0; }
+html { overflow-x: clip; max-width: 100%; }
 body {
   font-family: var(--font);
   color: var(--ink);
   background: var(--bg-solid);
   transition: color 0.4s;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -63,7 +65,7 @@ html.lenis, html.lenis body { height: auto; }
 .toast span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ---------- sections ---------- */
-main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); }
+main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); max-width: 100%; overflow-x: clip; }
 .hero {
   min-height: 100svh; display: flex; flex-direction: column; justify-content: center; position: relative;
 }
@@ -374,12 +376,13 @@ html[data-chapter='credits'] .board-wrap { opacity: 0; }
 .blk-state { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-soft); }
 .blk-hint { margin-top: 12px; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 
-.keys { position: relative; height: 170px; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+.keys-wrap { width: 100%; position: relative; }
+.keys { position: relative; height: 180px; width: 100%; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
 .key { all: unset; box-sizing: border-box; position: absolute; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; -webkit-tap-highlight-color: transparent; }
-.key span { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding-bottom: 8px; color: #5a7391; }
-.key.white { top: 0; bottom: 0; width: calc(100% / 8 - 3px); margin-right: 3px; background: linear-gradient(180deg, #fff, #eef4fb); border: 1px solid var(--glass-edge); border-radius: 0 0 12px 12px; box-shadow: 0 4px 0 rgba(80, 120, 170, 0.22); transition: transform 0.08s, background 0.25s; }
-.key.black { top: 0; height: 60%; width: calc(100% / 8 * 0.58); translate: -50% 0; z-index: 2; background: linear-gradient(180deg, #2b3a52, #121a28); border-radius: 0 0 9px 9px; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3); transition: transform 0.08s, background 0.25s; }
-.key.black span { color: #8aa3c4; }
+.key span { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding-bottom: 7px; color: #5a7391; }
+.key.white { top: 0; bottom: 0; width: calc(100% / 15 - 2px); margin-right: 2px; background: linear-gradient(180deg, #fff, #eef4fb); border: 1px solid var(--glass-edge); border-radius: 0 0 9px 9px; box-shadow: 0 4px 0 rgba(80, 120, 170, 0.22); transition: transform 0.08s, background 0.25s; }
+.key.black { top: 0; height: 60%; width: calc(100% / 15 * 0.62); translate: -50% 0; z-index: 2; background: linear-gradient(180deg, #2b3a52, #121a28); border-radius: 0 0 7px 7px; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3); transition: transform 0.08s, background 0.25s; }
+.key.black span { color: #8aa3c4; font-size: 9px; padding-bottom: 6px; }
 .key.lit { transform: translateY(3px); background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 35%, #fff), var(--accent)); }
 .key.black.lit { background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #000)); }
 .key:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -392,9 +395,12 @@ html[data-chapter='credits'] .board-wrap { opacity: 0; }
 .ch.on { opacity: 1; }
 
 @media (max-width: 760px) {
-  .blocks { grid-template-columns: 1fr; }
-  .card-block { background: var(--glass-solid); }
-  .keys { height: 150px; }
+  .blocks { grid-template-columns: 1fr; min-width: 0; }
+  .card-block { background: var(--glass-solid); min-width: 0; max-width: 100%; overflow: hidden; }
+  .keys-wrap { width: 100%; max-width: 100%; overflow: hidden; }
+  .keys { height: 135px; width: 100%; }
+  .key span { font-size: 8px; padding-bottom: 4px; }
+  .key.black span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ch { transition: none; } }
 

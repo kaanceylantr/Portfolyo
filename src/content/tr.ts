@@ -192,7 +192,7 @@ export const tr: Dict = {
     title: 'Seviyeler arasında yaptıklarım',
     sub: 'Bulmacalar bana kalıpları sevmeyi öğretti. Müzik, futbol ve şiir ise insan kalmamı sağlıyor.',
     tags: ['Mobil bulmaca oyunları', 'Seviye tasarımını çözümlemek', 'Rekabetçi MOBA’lar', 'Piyano', 'Şarkı yazımı', 'Şiir', 'Futbol'],
-    piano: { title: 'Piyano', hint: 'Tuşlara dokun ya da A S D F G H J K ve W E T Y U tuşlarını kullan. Ses otomatik açılır.' },
+    piano: { title: 'Piyano', hint: 'Tuşlara dokun ya da klavyeni kullan (2 oktav). Ses otomatik açılır.' },
     keepy: {
       title: 'Top sektirme',
       hint: 'Topu havada tutmak için ona dokun. Yön vermek için merkezden uzak vur.',
