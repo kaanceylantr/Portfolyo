@@ -99,40 +99,22 @@ main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); }
 
 @media (max-width: 760px) {
   .board-wrap { right: 50%; transform: translate(50%, -50%); width: min(92vw, 420px); }
-  .hero-copy, .steps { max-width: none; }
+  .steps { max-width: none; gap: 7vh; }
+  .step { background: var(--glass-solid); }
+
   .hero-copy {
-    position: relative;
-    isolation: isolate;
-    padding: 20px 16px;
-    margin: 0 -16px;
-  }
-  .hero-copy::before {
-    content: '';
-    position: absolute;
-    inset: -14px -18px;
-    z-index: -1;
-    border-radius: 32px;
-    background: radial-gradient(ellipse at 40% 45%, rgba(10, 18, 38, 0.78) 0%, rgba(10, 18, 38, 0.5) 55%, transparent 100%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    -webkit-mask-image: radial-gradient(ellipse at 45% 45%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0.6) 65%, transparent 100%);
-    mask-image: radial-gradient(ellipse at 45% 45%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0.6) 65%, transparent 100%);
-    pointer-events: none;
-  }
-  .hero-name {
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.65));
-  }
-  .hero-role {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-  }
-  .hero-tag {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    max-width: none;
+    padding: 24px 20px 26px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px) saturate(130%);
+    -webkit-backdrop-filter: blur(24px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
   .hero-cue {
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
   }
-  .steps { gap: 7vh; }
-  .step { background: var(--glass-solid); }
 }
 
 @media (prefers-reduced-motion: reduce) {

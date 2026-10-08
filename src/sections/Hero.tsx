@@ -13,7 +13,8 @@ export function Hero() {
     const ctx = gsap.context(() => {
       gsap
         .timeline({ defaults: { ease: 'power3.out' } })
-        .from('.hero-name span', { yPercent: 110, opacity: 0, duration: 1.1, stagger: 0.12 })
+        .from('.hero-copy', { opacity: 0, duration: 0.9 }, 0)
+        .from('.hero-name span', { yPercent: 110, opacity: 0, duration: 1.1, stagger: 0.12 }, 0)
         .from('.hero-role', { y: 18, opacity: 0, duration: 0.8 }, '-=0.6')
         .from('.hero-tag', { y: 18, opacity: 0, duration: 0.8 }, '-=0.6')
         .from('.hero-links', { y: 18, opacity: 0, duration: 0.8 }, '-=0.5')
