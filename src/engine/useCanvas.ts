@@ -8,10 +8,11 @@ type Draw = (ctx: CanvasRenderingContext2D, w: number, h: number, time: number) 
  * Sizes a canvas to its CSS box (DPR-capped), drives it from the shared ticker,
  * and pauses while off-screen. Under reduced motion it only redraws on scroll/resize.
  */
-export function useCanvas(draw: Draw) {
+export function useCanvas(draw: Draw, opts: { alwaysLive?: boolean } = {}) {
   const ref = useRef<HTMLCanvasElement>(null)
   const drawRef = useRef(draw)
   drawRef.current = draw
+  const live = opts.alwaysLive
 
   useEffect(() => {
     const canvas = ref.current!
@@ -41,7 +42,7 @@ export function useCanvas(draw: Draw) {
 
     const off = onFrame((t) => {
       if (!visible || !w) return
-      if (reducedMotion) {
+      if (reducedMotion && !live) {
         if (!dirty && scroll.y === lastY) return
         lastY = scroll.y
         dirty = false

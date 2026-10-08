@@ -13,6 +13,7 @@ export function Board() {
   const board = useMemo(() => makeBoard(), [])
 
   const ref = useCanvas((ctx, w, h, t) => {
+    if (document.documentElement.dataset.world !== 'space') return
     const n = board.size
     const pad = 18
     const cell = (Math.min(w, h) - pad * 2) / n
@@ -44,13 +45,13 @@ export function Board() {
       const g = ctx.createLinearGradient(x, y, x + s, y + s)
       if (lit) {
         g.addColorStop(0, 'rgba(255,255,255,0.95)')
-        g.addColorStop(1, 'rgba(200,180,255,0.75)')
+        g.addColorStop(1, 'rgba(170,215,250,0.8)')
       } else if (blocked) {
-        g.addColorStop(0, 'rgba(180,170,215,0.55)')
-        g.addColorStop(1, 'rgba(150,140,195,0.4)')
+        g.addColorStop(0, 'rgba(160,185,215,0.55)')
+        g.addColorStop(1, 'rgba(140,165,200,0.4)')
       } else {
         g.addColorStop(0, 'rgba(255,255,255,0.55)')
-        g.addColorStop(1, 'rgba(215,225,255,0.3)')
+        g.addColorStop(1, 'rgba(205,228,250,0.35)')
       }
       ctx.fillStyle = g
       ctx.beginPath()
@@ -67,13 +68,13 @@ export function Board() {
       ctx.fill()
 
       ctx.lineWidth = 1.2
-      ctx.strokeStyle = lit ? 'rgba(160,130,255,0.85)' : 'rgba(255,255,255,0.8)'
+      ctx.strokeStyle = lit ? 'rgba(70,160,225,0.85)' : 'rgba(255,255,255,0.8)'
       ctx.beginPath()
       ctx.roundRect(x, y, s, s, s * 0.22)
       ctx.stroke()
 
       if (blocked) {
-        ctx.strokeStyle = 'rgba(120,105,175,0.7)'
+        ctx.strokeStyle = 'rgba(100,130,170,0.7)'
         ctx.lineWidth = 2
         const m = s * 0.3
         ctx.beginPath()
@@ -108,8 +109,8 @@ export function Board() {
         }
         ctx.stroke()
       }
-      trail(cell * 0.2, 'rgba(190,170,255,0.28)')
-      trail(cell * 0.06, 'rgba(120,90,230,0.9)')
+      trail(cell * 0.2, 'rgba(120,190,240,0.28)')
+      trail(cell * 0.06, 'rgba(40,130,210,0.92)')
 
       // head orb
       let head = centre(board.path[Math.min(reached, total)])
@@ -120,8 +121,8 @@ export function Board() {
       }
       const orb = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, cell * 0.32)
       orb.addColorStop(0, 'rgba(255,255,255,1)')
-      orb.addColorStop(0.4, 'rgba(190,160,255,0.8)')
-      orb.addColorStop(1, 'rgba(190,160,255,0)')
+      orb.addColorStop(0.4, 'rgba(120,200,240,0.85)')
+      orb.addColorStop(1, 'rgba(120,200,240,0)')
       ctx.fillStyle = orb
       ctx.beginPath()
       ctx.arc(head.x, head.y, cell * 0.32, 0, 6.283)
@@ -138,7 +139,7 @@ export function Board() {
       ctx.lineWidth = 4
       ctx.strokeStyle = 'rgba(255,255,255,0.9)'
       ctx.strokeText(label, c.x + cell * 0.2, c.y - cell * 0.2)
-      ctx.fillStyle = 'rgba(70,45,150,0.95)'
+      ctx.fillStyle = 'rgba(25,70,120,0.95)'
       ctx.fillText(label, c.x + cell * 0.2, c.y - cell * 0.2)
     }
   })
