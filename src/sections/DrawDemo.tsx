@@ -209,7 +209,7 @@ export function DrawDemo() {
         onPointerCancel={up}
         aria-label={t.draw.title}
       />
-      <div className="ink" aria-label={t.draw.ink}>
+      <div className="ink" role="group" aria-label={t.draw.ink}>
         <span>{t.draw.ink}</span>
         <div>
           <i style={{ transform: `scaleX(${inkLeft})` }} />

@@ -4,6 +4,7 @@ import { useStore } from '../app/store'
 import { useT } from '../app/i18n'
 import { CHAPTERS, CHAPTER_WORLD, WORLDS, type World as WorldId } from '../content/chapters'
 import { reducedMotion } from '../engine/perf'
+import { audio } from '../engine/audio'
 
 /** Where the reveal wipe starts for each world. */
 const ORIGIN: Record<WorldId, string> = {
@@ -199,6 +200,7 @@ export function World() {
       el.style.clipPath = ''
     }
     setCard({ world: next, key: Date.now() })
+    if (useStore.getState().sound) audio.whoosh()
     z.current += 1
     el.style.zIndex = String(z.current)
     el.classList.add('on')

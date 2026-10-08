@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { useStore } from '../app/store'
 import { reducedMotion } from '../engine/perf'
+import { CodexPrime } from '../ui/CodexPrime'
 
 /** "Reveal early, require late": cards open one by one, with no penalty. */
 export function About() {
@@ -49,6 +50,7 @@ export function About() {
           </li>
         ))}
       </ol>
+      <CodexPrime prime={2} style={{ right: '14%', top: '46%' }} />
     </section>
   )
 }

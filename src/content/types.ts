@@ -1,6 +1,7 @@
 import type { World } from './chapters'
 
 export interface Dict {
+  meta: { title: string; description: string; skip: string }
   worldLabel: string
   worlds: Record<World, string>
   nav: { chapter: string; sound: string }
@@ -23,6 +24,7 @@ export interface Dict {
     title: string
     level: string
     levelNames: string[]
+    secret: string
     rule: string
     targets: string
     idle: string
@@ -67,6 +69,47 @@ export interface Dict {
     win: string
     lose: string
     stuck: string
+  }
+  interests: {
+    eyebrow: string
+    title: string
+    sub: string
+    tags: string[]
+    piano: { title: string; hint: string }
+    keepy: { title: string; hint: string; streak: (n: number) => string; best: (n: number) => string; drop: string }
+    poem: { title: string; lines: string[]; note: string }
+  }
+  codex: {
+    title: string
+    found: (prime: number, n: number, total: number) => string
+    hidden: string
+    secretLocked: string
+  }
+  boss: {
+    eyebrow: string
+    name: string
+    level: string
+    hp: string
+    intro: string
+    hit: string
+    skills: { name: string; note: string }[]
+    skip: string
+    winTitle: string
+    winText: string
+    mail: string
+    subject: string
+    body: string
+    again: string
+  }
+  credits: {
+    eyebrow: string
+    title: string
+    sheet: { k: string; v: string; d: string }[]
+    madeBy: string
+    stack: string
+    refs: string
+    codexDone: string
+    top: string
   }
   exp: {
     eyebrow: string
