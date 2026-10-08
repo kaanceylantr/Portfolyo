@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { useStore } from '../app/store'
+import { CODEX_PRIMES, useStore } from '../app/store'
 import { useT } from '../app/i18n'
 import { CHAPTERS } from '../content/chapters'
 import { onFrame, scroll } from '../engine/scroll'
 
 export function Hud() {
   const t = useT()
-  const { lang, setLang, sound, setSound, chapter, toast, clearToast } = useStore()
+  const { lang, setLang, sound, setSound, chapter, toast, clearToast, codex } = useStore()
   const bar = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -36,6 +36,11 @@ export function Hud() {
           </span>
           <b>{t.chapters[id]}</b>
         </div>
+        {codex.length > 0 && (
+          <span className="codex-pill" title={t.codex.title} aria-label={`${t.codex.title} ${codex.length}/${CODEX_PRIMES.length}`}>
+            ◆ {codex.length}/{CODEX_PRIMES.length}
+          </span>
+        )}
         <button
           className="snd"
           aria-pressed={sound}
@@ -64,10 +69,16 @@ export function Hud() {
         </div>
       </header>
       <div className={`toast${toast ? ' show' : ''}`} role="status" aria-live="polite">
-        {toast && (
+        {toast?.kind === 'ach' && (
           <>
             <span>✦ {t.ach.unlocked}</span>
-            <b>{t.ach.items[toast]}</b>
+            <b>{t.ach.items[toast.id]}</b>
+          </>
+        )}
+        {toast?.kind === 'codex' && (
+          <>
+            <span>◆ {t.codex.title}</span>
+            <b>{t.codex.found(toast.prime, toast.n, CODEX_PRIMES.length)}</b>
           </>
         )}
       </div>

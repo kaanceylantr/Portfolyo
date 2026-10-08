@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useT } from '../app/i18n'
-import { useStore } from '../app/store'
+import { CODEX_PRIMES, useStore } from '../app/store'
 import { LEVELS } from '../game/levels'
 import { adjacent, analyse, hasPrime, isPrime, solve, sumOf, type Path } from '../game/solver'
 import { reducedMotion } from '../engine/perf'
@@ -16,6 +16,7 @@ const line = (size: number, p: Path) => p.map((c) => `${(c % size) + 0.5},${Math
 export function PrimeDemo() {
   const t = useT()
   const unlock = useStore((s) => s.unlock)
+  const codexDone = useStore((s) => s.codex.length >= CODEX_PRIMES.length)
   const [li, setLi] = useState(0)
   const [sel, setSel] = useState<Path>([])
   const [done, setDone] = useState<Done[]>([])
@@ -154,16 +155,27 @@ export function PrimeDemo() {
       <div className="demo-top">
         <b>{t.demo.title}</b>
         <div className="demo-levels" role="group" aria-label={t.demo.level}>
-          {LEVELS.map((_, i) => (
-            <button key={i} aria-pressed={li === i} onClick={() => reset(i)} title={t.demo.levelNames[i]}>
-              {won.has(i) ? '✦' : t.demo.levelNames[i].replace(/\D+/g, '') || 'T'}
-            </button>
-          ))}
+          {LEVELS.map((_, i) => {
+            const secret = i === LEVELS.length - 1
+            const locked = secret && !codexDone
+            return (
+              <button
+                key={i}
+                aria-pressed={li === i}
+                disabled={locked}
+                onClick={() => reset(i)}
+                title={locked ? t.codex.secretLocked : t.demo.levelNames[i]}
+                aria-label={locked ? t.codex.secretLocked : t.demo.levelNames[i]}
+              >
+                {secret ? (won.has(i) ? '✦' : locked ? '🔒' : '🗝') : won.has(i) ? '✦' : t.demo.levelNames[i].replace(/\D+/g, '') || 'T'}
+              </button>
+            )
+          })}
         </div>
       </div>
       <p className="demo-rule">{t.demo.rule}</p>
 
-      <div className="targets" aria-label={t.demo.targets}>
+      <div className="targets" role="group" aria-label={t.demo.targets}>
         <span>{t.demo.targets}</span>
         {lv.targets.map((x) => {
           const k = done.findIndex((d) => d.target === x)

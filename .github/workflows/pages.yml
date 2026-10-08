@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/hopeful-allen-bi6zh6]
   workflow_dispatch:
 
 permissions:
@@ -31,6 +31,8 @@ jobs:
 
   deploy:
     needs: build
+    # GitHub only allows Pages deploys from the repository's default branch
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     environment:
       name: github-pages

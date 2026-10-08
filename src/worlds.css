@@ -7,7 +7,7 @@
 :root,
 [data-world='space'] {
   --font: 'Avenir Next', 'SF Pro Rounded', ui-rounded, 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --ink: #1d3a5c; --ink-soft: #587896; --body: #35506f;
+  --ink: #1d3a5c; --ink-soft: #46647f; --body: #35506f;
   --accent: #3b9ee0; --accent-2: #6fd3c4; --accent-ink: #fff;
   --glass: rgba(255, 255, 255, 0.58); --glass-edge: rgba(255, 255, 255, 0.92); --glass-solid: rgba(255, 255, 255, 0.9);
   --shadow: rgba(60, 130, 190, 0.18); --hud-fade: rgba(228, 243, 255, 0.96); --bg-solid: #e3f2ff;
@@ -19,7 +19,7 @@
 }
 
 [data-world='crystal'] {
-  --ink: #2a3270; --ink-soft: #6470ac; --body: #3f4a88;
+  --ink: #2a3270; --ink-soft: #4a5596; --body: #3f4a88;
   --accent: #6f78f0; --accent-2: #4cc3f0; --accent-ink: #fff;
   --glass: rgba(255, 255, 255, 0.5); --glass-edge: rgba(255, 255, 255, 0.95); --glass-solid: rgba(255, 255, 255, 0.88);
   --shadow: rgba(90, 100, 220, 0.2); --hud-fade: rgba(236, 240, 255, 0.96); --bg-solid: #ecf0ff;
@@ -43,7 +43,7 @@
 }
 
 [data-world='village'] {
-  --ink: #5a3b2a; --ink-soft: #8d6c56; --body: #6b4b38;
+  --ink: #5a3b2a; --ink-soft: #76563f; --body: #6b4b38;
   --accent: #ff8f3d; --accent-2: #5fbf6a; --accent-ink: #fff;
   --glass: rgba(255, 251, 238, 0.92); --glass-edge: #ffffff; --glass-solid: #fffaf0;
   --shadow: rgba(120, 80, 40, 0.24); --hud-fade: rgba(186, 228, 252, 0.96); --bg-solid: #bde6fb;

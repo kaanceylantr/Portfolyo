@@ -1,7 +1,7 @@
 export type World = 'space' | 'crystal' | 'obsidian' | 'village'
 
 /** Ordered chapters currently present in the page. Extend as sections are built. */
-export const CHAPTERS = ['hero', 'about', 'prime', 'experience', 'skills', 'projects', 'interests'] as const
+export const CHAPTERS = ['hero', 'about', 'prime', 'experience', 'skills', 'projects', 'interests', 'boss', 'credits'] as const
 export type ChapterId = (typeof CHAPTERS)[number]
 
 /** Each chapter lives in a world; the backdrop switches when the world changes. */
@@ -13,6 +13,8 @@ export const CHAPTER_WORLD: Record<ChapterId, World> = {
   skills: 'village',
   projects: 'village',
   interests: 'space',
+  boss: 'obsidian',
+  credits: 'space',
 }
 
 export const WORLDS: World[] = ['space', 'crystal', 'obsidian', 'village']
