@@ -98,13 +98,7 @@ main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); }
 .step p { margin-top: 12px; line-height: 1.65; color: var(--body); }
 
 @media (max-width: 760px) {
-  .board-wrap {
-    right: 50%;
-    transform: translate(50%, -50%);
-    width: min(92vw, 420px);
-    filter: blur(24px);
-    opacity: 0.32;
-  }
+  .board-wrap { right: 50%; transform: translate(50%, -50%); width: min(92vw, 420px); }
   .steps { max-width: none; gap: 7vh; }
   .step { background: var(--glass-solid); }
 
@@ -366,7 +360,7 @@ html:not([data-world='space']) .board-wrap { opacity: 0; }
 }
 
 /* ---------- Interests: rest room ---------- */
-html[data-chapter='interests'] .board-wrap { opacity: 0.14; filter: blur(24px); }
+html[data-chapter='interests'] .board-wrap { opacity: 0.16; }
 html[data-chapter='credits'] .board-wrap { opacity: 0; }
 .interests { padding: 8vh 0 14vh; }
 .in-head { margin-bottom: 5vh; }
