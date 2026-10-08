@@ -1,7 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './worlds.css'
 import './styles.css'
 import App from './App'
+
+document.documentElement.dataset.world = 'space'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

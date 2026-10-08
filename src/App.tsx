@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { initScroll } from './engine/scroll'
 import { useStore } from './app/store'
+import { World } from './ui/World'
 import { Sky } from './ui/Sky'
 import { Board } from './ui/Board'
 import { Hud } from './ui/Hud'
@@ -12,6 +13,7 @@ import { CHAPTERS } from './content/chapters'
 const PrimePath = lazy(() => import('./sections/PrimePath'))
 const Experience = lazy(() => import('./sections/Experience'))
 const Skills = lazy(() => import('./sections/Skills'))
+const Projects = lazy(() => import('./sections/Projects'))
 
 export default function App() {
   const setChapter = useStore((s) => s.setChapter)
@@ -20,7 +22,9 @@ export default function App() {
   useEffect(() => {
     const kill = initScroll()
     const triggers = CHAPTERS.map((id, i) =>
-      ScrollTrigger.create({
+      !document.querySelector(`[data-chapter="${id}"]`)
+        ? null
+        : ScrollTrigger.create({
         trigger: `[data-chapter="${id}"]`,
         start: 'top 55%',
         end: 'bottom 55%',
@@ -33,19 +37,14 @@ export default function App() {
       }),
     )
     return () => {
-      triggers.forEach((t) => t.kill())
+      triggers.forEach((t) => t?.kill())
       kill()
     }
   }, [setChapter, unlock])
 
   return (
     <>
-      <div className="bg" aria-hidden>
-        <i className="cloud c1" />
-        <i className="cloud c2" />
-        <i className="cloud c3" />
-        <i className="cloud c4" />
-      </div>
+      <World />
       <Sky />
       <div className="board-wrap">
         <Board />
@@ -67,6 +66,11 @@ export default function App() {
         <div className="chapter-slot" data-chapter="skills">
           <Suspense fallback={<div style={{ minHeight: '100svh' }} />}>
             <Skills />
+          </Suspense>
+        </div>
+        <div className="chapter-slot" data-chapter="projects">
+          <Suspense fallback={<div style={{ minHeight: '100svh' }} />}>
+            <Projects />
           </Suspense>
         </div>
       </main>

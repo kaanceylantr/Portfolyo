@@ -1,0 +1,144 @@
+/* ====================================================================
+   Worlds: each defines its own palette, geometry and scenery.
+   html[data-world] flips mid-wipe; backdrops are static layers whose
+   only motion is transform/opacity (compositor-friendly).
+   ==================================================================== */
+
+:root,
+[data-world='space'] {
+  --font: 'Avenir Next', 'SF Pro Rounded', ui-rounded, 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ink: #1d3a5c; --ink-soft: #587896; --body: #35506f;
+  --accent: #3b9ee0; --accent-2: #6fd3c4; --accent-ink: #fff;
+  --glass: rgba(255, 255, 255, 0.58); --glass-edge: rgba(255, 255, 255, 0.92); --glass-solid: rgba(255, 255, 255, 0.9);
+  --shadow: rgba(60, 130, 190, 0.18); --hud-fade: rgba(228, 243, 255, 0.96); --bg-solid: #e3f2ff;
+  --tile-a: rgba(255, 255, 255, 0.95); --tile-b: rgba(196, 224, 248, 0.55); --tile-r: 18%;
+  --r: 28px; --r-sm: 18px; --bw: 1px; --hw: 200;
+  --lift: 0 20px 60px var(--shadow), inset 0 1px 0 #fff;
+  --grad: linear-gradient(100deg, #1d4f86 0%, #3b9ee0 50%, #5fd0c0 100%);
+  --xp-grad: linear-gradient(90deg, #8fe3d4, #5fb4ee, #b8e4ff);
+}
+
+[data-world='crystal'] {
+  --ink: #2a3270; --ink-soft: #6470ac; --body: #3f4a88;
+  --accent: #6f78f0; --accent-2: #4cc3f0; --accent-ink: #fff;
+  --glass: rgba(255, 255, 255, 0.5); --glass-edge: rgba(255, 255, 255, 0.95); --glass-solid: rgba(255, 255, 255, 0.88);
+  --shadow: rgba(90, 100, 220, 0.2); --hud-fade: rgba(236, 240, 255, 0.96); --bg-solid: #ecf0ff;
+  --tile-a: rgba(255, 255, 255, 0.95); --tile-b: rgba(205, 215, 255, 0.55); --tile-r: 14%;
+  --r: 22px; --r-sm: 14px; --bw: 1px; --hw: 200;
+  --lift: 0 22px 60px var(--shadow), inset 0 1px 0 #fff, inset 0 -18px 30px rgba(150, 180, 255, 0.12);
+  --grad: linear-gradient(100deg, #4d57c4 0%, #6f78f0 40%, #4cc3f0 75%, #8fe0ff 100%);
+  --xp-grad: linear-gradient(90deg, #9fe0ff, #8f9cff, #d6c8ff);
+}
+
+[data-world='obsidian'] {
+  --ink: #f7ece5; --ink-soft: #c9a998; --body: #e4d2c7;
+  --accent: #ff7a3d; --accent-2: #ffb84a; --accent-ink: #1a0f0a;
+  --glass: rgba(28, 19, 23, 0.7); --glass-edge: rgba(255, 122, 61, 0.3); --glass-solid: rgba(22, 15, 18, 0.94);
+  --shadow: rgba(0, 0, 0, 0.6); --hud-fade: rgba(12, 9, 12, 0.96); --bg-solid: #0c090c;
+  --tile-a: rgba(70, 50, 56, 0.98); --tile-b: rgba(34, 24, 29, 0.95); --tile-r: 6%;
+  --r: 8px; --r-sm: 6px; --bw: 1px; --hw: 700;
+  --lift: 0 0 0 1px rgba(255, 122, 61, 0.1), 0 20px 50px var(--shadow);
+  --grad: linear-gradient(100deg, #ffd27a 0%, #ff7a3d 50%, #e8452e 100%);
+  --xp-grad: linear-gradient(90deg, #ffb84a, #ff7a3d, #e8452e);
+}
+
+[data-world='village'] {
+  --ink: #5a3b2a; --ink-soft: #8d6c56; --body: #6b4b38;
+  --accent: #ff8f3d; --accent-2: #5fbf6a; --accent-ink: #fff;
+  --glass: rgba(255, 251, 238, 0.92); --glass-edge: #ffffff; --glass-solid: #fffaf0;
+  --shadow: rgba(120, 80, 40, 0.24); --hud-fade: rgba(186, 228, 252, 0.96); --bg-solid: #bde6fb;
+  --tile-a: #fffdf3; --tile-b: #ffe9c2; --tile-r: 28%;
+  --r: 30px; --r-sm: 20px; --bw: 3px; --hw: 800;
+  --lift: 0 6px 0 rgba(150, 100, 50, 0.22), 0 20px 40px var(--shadow);
+  --grad: linear-gradient(100deg, #e8583f 0%, #ff8f3d 55%, #f5b82a 100%);
+  --xp-grad: linear-gradient(90deg, #f5b82a, #ff8f3d, #5fbf6a);
+}
+
+/* world-specific type weight */
+.prime-head h2, .ex-title, .ex-card h4, .step h3, .perk-name, .hero-name { font-weight: var(--hw); }
+.hero-name { font-weight: 200; }
+.ex-card h4, .step h3 { font-weight: calc(var(--hw) * 0.55 + 100); }
+[data-world='obsidian'] .ex-title, [data-world='obsidian'] .prime-head h2 { text-transform: uppercase; letter-spacing: 0.01em; }
+[data-world='village'] .ex-title, [data-world='village'] .prime-head h2 { letter-spacing: -0.01em; }
+
+/* smooth token swaps on the big surfaces */
+.step, .ex-card, .perk, .demo, .facts div, .traps li, .toast, .lang, .hud-logo, .chip, .tg, .quest {
+  transition: background-color 0.45s, border-color 0.45s, color 0.45s, box-shadow 0.45s, opacity 0.5s, transform 0.5s;
+}
+
+/* ---------- layers ---------- */
+.worlds { position: fixed; inset: 0; z-index: -3; overflow: hidden; background: var(--bg-solid); }
+.w-layer { position: absolute; inset: 0; display: none; overflow: hidden; }
+.w-layer.on { display: block; }
+.scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cloud { position: absolute; border-radius: 50%; will-change: transform; animation: drift 38s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate3d(6vw, 3vh, 0) scale(1.08); } }
+@keyframes bobby { to { transform: translate3d(0, -26px, 0) rotate(2deg); } }
+.bob { animation: bobby 9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; will-change: transform; }
+.bob.b2 { animation-duration: 11s; animation-delay: -3s; }
+.bob.b3 { animation-duration: 13s; animation-delay: -6s; }
+.bob.b4 { animation-duration: 10s; animation-delay: -2s; }
+
+/* 1 · open space: airy ice-blue cosmos with a soft ringed planet */
+.w-space {
+  background:
+    radial-gradient(110% 70% at 12% 0%, #ffffff 0%, transparent 55%),
+    radial-gradient(90% 70% at 92% 22%, #c9ecff 0%, transparent 60%),
+    linear-gradient(180deg, #dff0ff 0%, #e8f6ff 50%, #d6f2f2 100%);
+}
+.w-space .c1 { width: 60vmax; height: 36vmax; left: -15vmax; top: -8vmax; background: radial-gradient(closest-side, #ffffff, transparent); opacity: 0.9; }
+.w-space .c2 { width: 55vmax; height: 34vmax; right: -18vmax; top: 18vh; background: radial-gradient(closest-side, #b9e1fa, transparent); opacity: 0.85; animation-duration: 46s; }
+.w-space .c3 { width: 70vmax; height: 40vmax; left: 10vw; bottom: -18vmax; background: radial-gradient(closest-side, #c4f0e6, transparent); opacity: 0.85; animation-duration: 52s; }
+.w-space .c4 { width: 40vmax; height: 26vmax; right: 8vw; bottom: 4vh; background: radial-gradient(closest-side, #d3e6ff, transparent); opacity: 0.8; animation-duration: 34s; }
+.planet {
+  position: absolute; left: -10vmax; bottom: -14vmax; width: 42vmax; height: 42vmax; border-radius: 50%; opacity: 0.8;
+  background: radial-gradient(circle at 34% 30%, #ffffff 0%, #c7e8fa 45%, #86bfe8 100%);
+}
+.planet::after {
+  content: ''; position: absolute; left: -26%; top: 30%; width: 152%; height: 36%; border-radius: 50%;
+  border: 1.2vmax solid rgba(255, 255, 255, 0.7); transform: rotate(-16deg);
+}
+
+/* 2 · crystal realm: iridescent shards on an icy sky */
+.w-crystal {
+  background:
+    radial-gradient(100% 70% at 85% 10%, #ddf4ff 0%, transparent 60%),
+    radial-gradient(90% 70% at 10% 90%, #e6e4ff 0%, transparent 60%),
+    linear-gradient(160deg, #eef2ff 0%, #e3ecff 55%, #dff3ff 100%);
+}
+.w-crystal .c1 { width: 56vmax; height: 34vmax; left: -12vmax; top: -6vmax; background: radial-gradient(closest-side, #ffffff, transparent); opacity: 0.85; }
+.w-crystal .c2 { width: 50vmax; height: 30vmax; right: -14vmax; bottom: -8vmax; background: radial-gradient(closest-side, #bfe9ff, transparent); opacity: 0.8; animation-duration: 44s; }
+
+/* 3 · obsidian caldera: black glass, lava glow, embers */
+.w-obsidian { background: linear-gradient(180deg, #08060a 0%, #140c10 60%, #26100d 100%); }
+@keyframes heat { from { opacity: 0.6; } to { opacity: 1; } }
+.heat { animation: heat 3.4s ease-in-out infinite alternate; }
+.crater { animation: heat 2.2s ease-in-out infinite alternate; }
+
+/* 4 · tiny village: chibi hills, castle, puffy clouds */
+.w-village { background: linear-gradient(180deg, #a6dcf8 0%, #d3f0ff 55%, #fff0cf 100%); }
+.sun {
+  position: absolute; right: 9vw; top: 9vh; width: 16vmax; height: 16vmax; border-radius: 50%;
+  background: radial-gradient(circle, #fff6c2 0%, #ffe27a 45%, rgba(255, 226, 122, 0) 72%);
+}
+.puff { position: absolute; width: 22vmax; opacity: 0.95; will-change: transform; animation: puffdrift 60s linear infinite alternate; }
+.p1 { left: 6vw; top: 12vh; }
+.p2 { left: 44vw; top: 22vh; width: 16vmax; animation-duration: 75s; }
+.p3 { right: 12vw; top: 40vh; width: 18vmax; animation-duration: 90s; animation-direction: alternate-reverse; }
+@keyframes puffdrift { to { transform: translate3d(14vw, 0, 0); } }
+
+/* ---------- world title card ---------- */
+.world-card {
+  position: fixed; z-index: 20; left: 50%; top: 42%; translate: -50% -50%; pointer-events: none; text-align: center;
+  display: flex; flex-direction: column; gap: 4px; padding: 18px 34px; border-radius: var(--r);
+  background: var(--glass-solid); border: var(--bw) solid var(--glass-edge); box-shadow: var(--lift);
+  animation: wcard 2.2s ease both;
+}
+.world-card small { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); }
+.world-card b { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: var(--hw); color: var(--ink); letter-spacing: -0.01em; }
+@keyframes wcard {
+  0% { opacity: 0; transform: translateY(14px) scale(0.96); }
+  22%, 70% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-10px) scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) { .world-card { animation-duration: 1.6s; } }

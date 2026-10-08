@@ -1,6 +1,8 @@
 import type { Dict } from './types'
 
 export const tr: Dict = {
+  worldLabel: 'Dünya',
+  worlds: { space: 'Açık Uzay', crystal: 'Kristal Diyarı', obsidian: 'Obsidyen Kaldera', village: 'Minik Köy' },
   nav: { chapter: 'Bölüm', sound: 'Ses' },
   hero: {
     role: 'Oyun Tasarımcısı & Bilgisayar Mühendisi',
@@ -44,12 +46,14 @@ export const tr: Dict = {
     prime: 'Prime Path',
     experience: 'Tempo',
     skills: 'Perkler',
+    projects: 'Yan Görevler',
   },
   ach: {
     unlocked: 'Başarım kazanıldı',
     items: {
       explorer: 'Kâşif — kaydırmaya başladın',
       student: 'Hızlı Öğrenen — eğitimi bitirdin',
+      bridge: 'Köprü Ustası — çizimin topu eve taşıdı',
       fullbuild: 'Tam Build — dört perkin hepsi kuşanıldı',
       solver: 'Bulmaca Çözücü — bir Prime Path seviyesini çözdün',
     },
@@ -93,6 +97,79 @@ export const tr: Dict = {
     noMatch: (n) => `${n} hedeflerden biri değil.`,
     solved: (t) => `${t} tamam!`,
     stats: (s, n) => `Çözücü: hedef başına ${s.join(' / ')} geçerli kaydırma · ${n.toLocaleString('tr')} durum tarandı`,
+  },
+  projects: {
+    eyebrow: 'Yan Görevler',
+    title: 'Deneyler ve keşifler',
+    sub: 'Tek bir fikri sonuna kadar denediğim küçük işler: bir mekanik, bir boru hattı, bir sistem.',
+    reward: 'Ödül',
+    items: [
+      {
+        id: 'draw',
+        type: 'Mekanik keşfi',
+        title: 'Çizim mekaniğiyle fizik bulmaca-platformu',
+        meta: 'Prototip · Unity, C#',
+        bullets: [
+          'Çalışma anında 2D fizik collider’ları üreten özel bir serbest vektör çizim sistemi.',
+          'Modüler, olay tabanlı mimari: oyuncu girdisi, fizik raycast’i ve gerçek zamanlı mesh üretimi birbirinden ayrıldı.',
+          'Sözsüz yönlendirme: sürtünme, ağırlık ve engel dizilimi, bölüm metin olmadan öğretsin diye ayarlandı.',
+          'Bölüm varyasyonlarını prototiplemek ve dokunsal hissi iyileştirmek için yapay zekâ destekli iş akışları.',
+        ],
+        stack: ['Unity', 'C#', '2D fizik'],
+      },
+      {
+        id: 'hybrid',
+        type: 'Hızlı iterasyon',
+        title: 'Hibrit-casual mobil prototip',
+        meta: '2 kişilik ekip · Unity, C#, Meshy AI',
+        bullets: [
+          'Oynanış okunabilirliğini, kısa seans döngülerini ve anında tatmin geri bildirimini test ettim.',
+          'Tematik varlık varyasyonları üretmek ve sanat iterasyon süresini kısaltmak için yapay zekâ destekli 3D üretim (Meshy AI).',
+          'Elde tutmayı ve seans süresini neyin belirlediğini anlamak için ilerleme temposunu ve soft currency harcamalarını analiz ettim.',
+        ],
+        stack: ['Unity', 'C#', 'Meshy AI'],
+      },
+      {
+        id: 'stock',
+        type: 'Web mimarisi',
+        title: 'Yapay zekâ destekli stok kontrol ve e-ticaret',
+        meta: '3 kişilik ekip · React, FastAPI, Node.js, MongoDB',
+        bullets: [
+          'Tüketici mağazası ile yönetici stok yönetimini birleştiren tek bir platform.',
+          'Ayrıştırılmış mikroservisler: React arayüzü, FastAPI ve Node.js arka uçlarıyla konuşuyor.',
+          'NLP niyet tanıma (Rasa ve spaCy) kullanıcıyı stok işlemlerinde ve aramada yönlendiriyor.',
+          'Güvenlik stoğunun altında otomatik yenileme taslakları; JWT kimlik doğrulama, QR barkod, Postman ile doğrulanmış API’ler.',
+        ],
+        stack: ['React', 'FastAPI', 'Node.js', 'MongoDB', 'Rasa'],
+        link: { href: 'https://github.com/EmreCanPalaz/Stok_kontrol', label: 'GitHub’da gör' },
+      },
+      {
+        id: 'robot',
+        type: 'Gömülü sistemler',
+        title: 'Otonom çizgi izleyen robot',
+        meta: 'Arduino · C / C++',
+        bullets: [
+          'Eşik filtrelemeyle gerçek zamanlı sensör sinyali işleme.',
+          'Yüksek hızlı virajlarda dengeyi koruyan motor kontrol algoritmaları.',
+        ],
+        stack: ['C / C++', 'Arduino'],
+        reward: '1. lik · üniversite çapı robotik yarışması',
+      },
+    ],
+  },
+  draw: {
+    title: 'Köprü çiz',
+    note: 'Çizim fikrinin küçük bir web yeniden yapımı.',
+    ink: 'Mürekkep',
+    drop: 'Topu bırak',
+    stop: 'Durdur',
+    undo: 'Çizgiyi geri al',
+    reset: 'Sıfırla',
+    level: 'Seviye',
+    hint: 'Parmağınla veya fareyle bir rampa çiz, sonra topu sepete bırak.',
+    win: 'Başardı! Çizgin topu eve taşıdı.',
+    lose: 'Top düştü. Çizgini düzelt ve tekrar bırak.',
+    stuck: 'Top takıldı. Daha dik bir çizgi dene.',
   },
   exp: {
     eyebrow: 'Deneyim',

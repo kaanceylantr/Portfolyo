@@ -1,6 +1,8 @@
 import type { Dict } from './types'
 
 export const en: Dict = {
+  worldLabel: 'World',
+  worlds: { space: 'Open Space', crystal: 'Crystal Realm', obsidian: 'Obsidian Caldera', village: 'Tiny Village' },
   nav: { chapter: 'Chapter', sound: 'Sound' },
   hero: {
     role: 'Game Designer & Computer Engineer',
@@ -44,12 +46,14 @@ export const en: Dict = {
     prime: 'Prime Path',
     experience: 'Pacing',
     skills: 'Perks',
+    projects: 'Side Quests',
   },
   ach: {
     unlocked: 'Achievement unlocked',
     items: {
       explorer: 'Explorer — you started scrolling',
       student: 'Quick Learner — tutorial complete',
+      bridge: 'Bridge Builder — your drawing carried the ball home',
       fullbuild: 'Full Build — all four perks equipped',
       solver: 'Puzzle Solver — you cracked a Prime Path level',
     },
@@ -93,6 +97,79 @@ export const en: Dict = {
     noMatch: (n) => `${n} is not one of the targets.`,
     solved: (t) => `${t} reached!`,
     stats: (s, n) => `Solver: ${s.join(' / ')} valid swipes per target · ${n.toLocaleString('en')} states searched`,
+  },
+  projects: {
+    eyebrow: 'Side Quests',
+    title: 'Experiments & expeditions',
+    sub: 'Smaller builds where I test one idea hard: a mechanic, a pipeline, a system.',
+    reward: 'Reward',
+    items: [
+      {
+        id: 'draw',
+        type: 'Mechanics exploration',
+        title: 'Physics puzzle-platformer with drawing',
+        meta: 'Prototype · Unity, C#',
+        bullets: [
+          'A custom free-form vector drawing system that creates 2D physics colliders at runtime.',
+          'Modular, event-driven architecture: player input, physics raycasting and real-time mesh generation kept decoupled.',
+          'Non-verbal guidance: friction, weight and obstacle layouts tuned so the level teaches without text.',
+          'AI-assisted workflows to prototype level permutations and iterate on tactile feel.',
+        ],
+        stack: ['Unity', 'C#', '2D physics'],
+      },
+      {
+        id: 'hybrid',
+        type: 'Rapid iteration',
+        title: 'Hybrid-casual mobile prototype',
+        meta: 'Team of 2 · Unity, C#, Meshy AI',
+        bullets: [
+          'Tested gameplay readability, bite-sized session loops and instant-gratification feedback.',
+          'AI-assisted 3D generation (Meshy AI) to produce thematic asset variants and cut art iteration time.',
+          'Analysed progression pacing and soft-currency sinks to understand what drives retention and session length.',
+        ],
+        stack: ['Unity', 'C#', 'Meshy AI'],
+      },
+      {
+        id: 'stock',
+        type: 'Web architecture',
+        title: 'AI-powered stock control & e-commerce',
+        meta: 'Team of 3 · React, FastAPI, Node.js, MongoDB',
+        bullets: [
+          'One platform bridging a consumer storefront and admin inventory management.',
+          'Decoupled microservices: React UI talking to FastAPI and Node.js backends.',
+          'NLP intent recognition (Rasa & spaCy) guides users through inventory actions and search.',
+          'Automatic replenishment drafts below safety-stock thresholds; JWT auth, QR barcodes, Postman-validated APIs.',
+        ],
+        stack: ['React', 'FastAPI', 'Node.js', 'MongoDB', 'Rasa'],
+        link: { href: 'https://github.com/EmreCanPalaz/Stok_kontrol', label: 'View on GitHub' },
+      },
+      {
+        id: 'robot',
+        type: 'Embedded systems',
+        title: 'Autonomous line-follower robot',
+        meta: 'Arduino · C / C++',
+        bullets: [
+          'Real-time sensor signal processing with threshold filtering.',
+          'Motor-control algorithms that keep high-speed corners stable.',
+        ],
+        stack: ['C / C++', 'Arduino'],
+        reward: '1st place · university-wide robotics competition',
+      },
+    ],
+  },
+  draw: {
+    title: 'Draw a bridge',
+    note: 'A tiny web re-creation of the drawing idea.',
+    ink: 'Ink',
+    drop: 'Drop the ball',
+    stop: 'Stop',
+    undo: 'Undo line',
+    reset: 'Reset',
+    level: 'Level',
+    hint: 'Draw a ramp with your finger or mouse, then drop the ball into the basket.',
+    win: 'It made it! Your line carried the ball home.',
+    lose: 'The ball fell. Adjust your line and drop again.',
+    stuck: 'The ball got stuck. Try a steeper line.',
   },
   exp: {
     eyebrow: 'Experience',

@@ -1,4 +1,8 @@
+import type { World } from './chapters'
+
 export interface Dict {
+  worldLabel: string
+  worlds: Record<World, string>
   nav: { chapter: string; sound: string }
   hero: { role: string; tagline: string; scroll: string }
   about: { title: string; stepLabel: string; steps: { k: string; t: string; d: string }[] }
@@ -33,6 +37,36 @@ export interface Dict {
     noMatch: (sum: number) => string
     solved: (t: number) => string
     stats: (swipes: number[], nodes: number) => string
+  }
+  projects: {
+    eyebrow: string
+    title: string
+    sub: string
+    reward: string
+    items: {
+      id: 'draw' | 'hybrid' | 'stock' | 'robot'
+      type: string
+      title: string
+      meta: string
+      bullets: string[]
+      stack: string[]
+      reward?: string
+      link?: { href: string; label: string }
+    }[]
+  }
+  draw: {
+    title: string
+    note: string
+    ink: string
+    drop: string
+    stop: string
+    undo: string
+    reset: string
+    level: string
+    hint: string
+    win: string
+    lose: string
+    stuck: string
   }
   exp: {
     eyebrow: string
