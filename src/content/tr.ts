@@ -36,7 +36,7 @@ export const tr: Dict = {
       {
         k: 'Stüdyo',
         t: 'Gnarly Game Studio.',
-        d: 'Seviye tasarımı, boss mekaniği önerileri, rakip araştırması, playable reklam analizi ve canlı bir cover-shooter’da denge çalışması.',
+        d: 'Seviye tasarımı, 20 adet boss mekaniği, rakip araştırması, playable reklam analizi ve son aşamalardaki bir oyunda ilerleme sistemleri.',
       },
       {
         k: 'Veri',
@@ -265,13 +265,13 @@ export const tr: Dict = {
   exp: {
     eyebrow: 'Deneyim',
     title: 'Gnarly Game Studio',
-    role: 'Oyun Tasarımcısı (Stajyer) · Temmuz – Eylül 2026',
+    role: 'Oyun Tasarımcısı (Stajyer) · Ağustos – Eylül 2026',
     axis: ['sakin', 'gergin'],
     side: { title: 'Gerilim göstergesi', now: 'Şimdi', note: 'Örnekleyici: her iş türünün ne kadar yoğun hissettirdiği, eğri üzerinde gösterildi.' },
     facts: [
-      { n: '3 ay', l: 'Temmuz – Eylül 2026' },
-      { n: '10 → 1', l: 'önerilen boss mekaniği → oyuna giren' },
-      { n: '2', l: 'oyun: sıra tabanlı bir oyun ve canlı bir cover-shooter' },
+      { n: '2 ay', l: 'Ağustos – Eylül 2026' },
+      { n: '20', l: 'tasarlanan boss mekaniği' },
+      { n: '2', l: 'oyun: sıra tabanlı oyun ve son aşamalardaki bir mobil proje' },
     ],
     items: [
       {
@@ -280,10 +280,9 @@ export const tr: Dict = {
         d: 'Tam seviyeler tasarladım, oyuncu stresini ve temposunu haritaladım, tempo raporlarını doğrudan baş tasarımcılara sundum.',
       },
       {
-        k: 'Boss önerileri',
-        t: 'Sıra tabanlı bir oyun için on boss mekaniği önerdim.',
-        d: 'Biri onaylandı ve canlı oyuna eklendi.',
-        stat: { n: '10 → 1', l: 'önerilen → oyuna giren' },
+        k: 'Boss mekanikleri',
+        t: '20 adet boss mekaniği tasarladım.',
+        d: 'Sıra tabanlı bir oyun için oyuncunun taktiksel seçimlerini zorlayan 20 adet boss mekaniği kurguladım.',
       },
       {
         k: 'Pazar',
@@ -296,9 +295,9 @@ export const tr: Dict = {
         d: 'Playable reklam test verilerini analiz ettim, etkileşimi ve dönüşümü artıran yenilgi senaryoları tasarladım.',
       },
       {
-        k: 'Denge',
-        t: 'Savaş ölçekleme ve rogue-lite perk kartları.',
-        d: 'Canlıdaki amiral gemisi cover-shooter’da savaş ölçekleme sayılarını, temel statları ve perk kartı ilerlemesini dengeledim.',
+        k: 'İlerleme',
+        t: 'Savaş ölçekleme ve perk kartı ilerlemesi.',
+        d: 'Son aşamalardaki bir oyunun savaş ölçekleme sayıları ve perk kartı ilerlemesi üzerinde çalıştım.',
       },
       {
         k: 'QA',

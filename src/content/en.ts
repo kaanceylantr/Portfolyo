@@ -36,7 +36,7 @@ export const en: Dict = {
       {
         k: 'Studio',
         t: 'Gnarly Game Studio.',
-        d: 'Levels, boss pitches, competitor research, playable-ad analytics and live balancing on a flagship cover-shooter.',
+        d: 'Level design, 20 boss mechanics, competitor research, playable-ad analytics and progression systems on a late-stage game.',
       },
       {
         k: 'Data',
@@ -265,13 +265,13 @@ export const en: Dict = {
   exp: {
     eyebrow: 'Experience',
     title: 'Gnarly Game Studio',
-    role: 'Game Designer (Intern) · July – September 2026',
+    role: 'Game Designer (Intern) · August – September 2026',
     axis: ['calm', 'intense'],
     side: { title: 'Tension readout', now: 'Now', note: 'Illustrative: how intense each kind of work felt, plotted on the curve.' },
     facts: [
-      { n: '3 mo', l: 'July – September 2026' },
-      { n: '10 → 1', l: 'boss mechanics pitched → shipped' },
-      { n: '2', l: 'titles: a turn-based game and a live cover-shooter' },
+      { n: '2 mo', l: 'August – September 2026' },
+      { n: '20', l: 'boss mechanics designed' },
+      { n: '2', l: 'titles: turn-based game and a late-stage project' },
     ],
     items: [
       {
@@ -280,10 +280,9 @@ export const en: Dict = {
         d: 'Authored full levels, mapped player stress and pacing, and presented pacing reports directly to the lead designers.',
       },
       {
-        k: 'Boss pitches',
-        t: 'Ten boss mechanics pitched for a turn-based title.',
-        d: 'One of them was approved and implemented into the live game.',
-        stat: { n: '10 → 1', l: 'pitched → shipped' },
+        k: 'Boss mechanics',
+        t: 'Designed 20 boss mechanics.',
+        d: 'Designed 20 boss mechanics for a turn-based game to deepen tactical player choices.',
       },
       {
         k: 'Market',
@@ -296,9 +295,9 @@ export const en: Dict = {
         d: 'Analysed playable-ad test data and designed fail-state scenarios that improved creative engagement and conversion.',
       },
       {
-        k: 'Balance',
-        t: 'Combat scaling and rogue-lite perk cards.',
-        d: 'Balanced combat scaling numbers, base stats and perk-card progression on a live flagship cover-shooter.',
+        k: 'Progression',
+        t: 'Combat scaling and perk-card progression.',
+        d: 'Worked on combat scaling numbers and perk-card progression for a late-stage game.',
       },
       {
         k: 'QA',
