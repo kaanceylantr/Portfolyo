@@ -34,15 +34,15 @@ function Crystal() {
       <svg className="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden>
         <defs>
           <linearGradient id="kg1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fff" stopOpacity="0.9" />
+            <stop offset="0" stopColor="#f4f7ff" stopOpacity="0.65" />
             <stop offset="1" stopColor="#b9c9ff" stopOpacity="0.15" />
           </linearGradient>
           <linearGradient id="kg2" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#e6fbff" stopOpacity="0.95" />
+            <stop offset="0" stopColor="#d9f3ff" stopOpacity="0.7" />
             <stop offset="1" stopColor="#8fdcff" stopOpacity="0.2" />
           </linearGradient>
           <linearGradient id="kg3" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0" stopColor="#fff0fb" stopOpacity="0.85" />
+            <stop offset="0" stopColor="#f6e6fa" stopOpacity="0.6" />
             <stop offset="1" stopColor="#f3b8e0" stopOpacity="0.12" />
           </linearGradient>
         </defs>

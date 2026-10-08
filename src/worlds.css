@@ -7,25 +7,25 @@
 :root,
 [data-world='space'] {
   --font: 'Avenir Next', 'SF Pro Rounded', ui-rounded, 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --ink: #1d3a5c; --ink-soft: #46647f; --body: #35506f;
-  --accent: #3b9ee0; --accent-2: #6fd3c4; --accent-ink: #fff;
-  --glass: rgba(255, 255, 255, 0.58); --glass-edge: rgba(255, 255, 255, 0.92); --glass-solid: rgba(255, 255, 255, 0.9);
-  --shadow: rgba(60, 130, 190, 0.18); --hud-fade: rgba(228, 243, 255, 0.96); --bg-solid: #e3f2ff;
-  --tile-a: rgba(255, 255, 255, 0.95); --tile-b: rgba(196, 224, 248, 0.55); --tile-r: 18%;
-  --r: 28px; --r-sm: 18px; --bw: 1px; --hw: 200;
-  --lift: 0 20px 60px var(--shadow), inset 0 1px 0 #fff;
-  --grad: linear-gradient(100deg, #1d4f86 0%, #3b9ee0 50%, #5fd0c0 100%);
-  --xp-grad: linear-gradient(90deg, #8fe3d4, #5fb4ee, #b8e4ff);
+  --ink: #eaf3ff; --ink-soft: #9db5d3; --body: #cddbee;
+  --accent: #6ab7ff; --accent-2: #6fe0cf; --accent-ink: #06223f;
+  --glass: rgba(20, 36, 66, 0.58); --glass-edge: rgba(140, 190, 255, 0.22); --glass-solid: rgba(15, 27, 52, 0.93);
+  --shadow: rgba(0, 0, 0, 0.45); --hud-fade: rgba(10, 18, 38, 0.96); --bg-solid: #0a1226;
+  --tile-a: rgba(74, 106, 156, 0.9); --tile-b: rgba(36, 60, 104, 0.85); --tile-r: 18%;
+  --r: 26px; --r-sm: 16px; --bw: 1px; --hw: 200;
+  --lift: 0 0 0 1px rgba(140, 190, 255, 0.07), 0 18px 50px var(--shadow);
+  --grad: linear-gradient(100deg, #cfe8ff 0%, #6ab7ff 50%, #6fe0cf 100%);
+  --xp-grad: linear-gradient(90deg, #6fe0cf, #6ab7ff, #9fb4ff);
 }
 
 [data-world='crystal'] {
-  --ink: #2a3270; --ink-soft: #4a5596; --body: #3f4a88;
+  --ink: #232b63; --ink-soft: #424d8c; --body: #353f7c;
   --accent: #6f78f0; --accent-2: #4cc3f0; --accent-ink: #fff;
-  --glass: rgba(255, 255, 255, 0.5); --glass-edge: rgba(255, 255, 255, 0.95); --glass-solid: rgba(255, 255, 255, 0.88);
-  --shadow: rgba(90, 100, 220, 0.2); --hud-fade: rgba(236, 240, 255, 0.96); --bg-solid: #ecf0ff;
-  --tile-a: rgba(255, 255, 255, 0.95); --tile-b: rgba(205, 215, 255, 0.55); --tile-r: 14%;
+  --glass: rgba(238, 243, 255, 0.5); --glass-edge: rgba(255, 255, 255, 0.7); --glass-solid: rgba(233, 239, 253, 0.92);
+  --shadow: rgba(70, 80, 190, 0.22); --hud-fade: rgba(200, 212, 240, 0.96); --bg-solid: #c8d4f0;
+  --tile-a: rgba(244, 247, 255, 0.95); --tile-b: rgba(190, 202, 240, 0.62); --tile-r: 14%;
   --r: 22px; --r-sm: 14px; --bw: 1px; --hw: 200;
-  --lift: 0 22px 60px var(--shadow), inset 0 1px 0 #fff, inset 0 -18px 30px rgba(150, 180, 255, 0.12);
+  --lift: 0 22px 60px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -18px 30px rgba(120, 150, 240, 0.1);
   --grad: linear-gradient(100deg, #4d57c4 0%, #6f78f0 40%, #4cc3f0 75%, #8fe0ff 100%);
   --xp-grad: linear-gradient(90deg, #9fe0ff, #8f9cff, #d6c8ff);
 }
@@ -79,35 +79,35 @@
 .bob.b3 { animation-duration: 13s; animation-delay: -6s; }
 .bob.b4 { animation-duration: 10s; animation-delay: -2s; }
 
-/* 1 · open space: airy ice-blue cosmos with a soft ringed planet */
+/* 1 · open space: calm twilight cosmos, soft nebula glows and a dim ringed planet */
 .w-space {
   background:
-    radial-gradient(110% 70% at 12% 0%, #ffffff 0%, transparent 55%),
-    radial-gradient(90% 70% at 92% 22%, #c9ecff 0%, transparent 60%),
-    linear-gradient(180deg, #dff0ff 0%, #e8f6ff 50%, #d6f2f2 100%);
+    radial-gradient(90% 60% at 82% 8%, #1f3d70 0%, transparent 62%),
+    radial-gradient(80% 60% at 8% 92%, #12404f 0%, transparent 62%),
+    linear-gradient(180deg, #0a1226 0%, #0e1d3b 55%, #0a2a3a 100%);
 }
-.w-space .c1 { width: 60vmax; height: 36vmax; left: -15vmax; top: -8vmax; background: radial-gradient(closest-side, #ffffff, transparent); opacity: 0.9; }
-.w-space .c2 { width: 55vmax; height: 34vmax; right: -18vmax; top: 18vh; background: radial-gradient(closest-side, #b9e1fa, transparent); opacity: 0.85; animation-duration: 46s; }
-.w-space .c3 { width: 70vmax; height: 40vmax; left: 10vw; bottom: -18vmax; background: radial-gradient(closest-side, #c4f0e6, transparent); opacity: 0.85; animation-duration: 52s; }
-.w-space .c4 { width: 40vmax; height: 26vmax; right: 8vw; bottom: 4vh; background: radial-gradient(closest-side, #d3e6ff, transparent); opacity: 0.8; animation-duration: 34s; }
+.w-space .c1 { width: 60vmax; height: 36vmax; left: -15vmax; top: -8vmax; background: radial-gradient(closest-side, rgba(90, 140, 255, 0.28), transparent); }
+.w-space .c2 { width: 55vmax; height: 34vmax; right: -18vmax; top: 18vh; background: radial-gradient(closest-side, rgba(80, 200, 210, 0.2), transparent); animation-duration: 46s; }
+.w-space .c3 { width: 70vmax; height: 40vmax; left: 10vw; bottom: -18vmax; background: radial-gradient(closest-side, rgba(110, 120, 255, 0.22), transparent); animation-duration: 52s; }
+.w-space .c4 { width: 40vmax; height: 26vmax; right: 8vw; bottom: 4vh; background: radial-gradient(closest-side, rgba(90, 170, 255, 0.18), transparent); animation-duration: 34s; }
 .planet {
-  position: absolute; left: -10vmax; bottom: -14vmax; width: 42vmax; height: 42vmax; border-radius: 50%; opacity: 0.8;
-  background: radial-gradient(circle at 34% 30%, #ffffff 0%, #c7e8fa 45%, #86bfe8 100%);
+  position: absolute; left: -10vmax; bottom: -14vmax; width: 42vmax; height: 42vmax; border-radius: 50%; opacity: 0.7;
+  background: radial-gradient(circle at 34% 30%, #5f93c8 0%, #2c5a92 50%, #14305a 100%);
 }
 .planet::after {
   content: ''; position: absolute; left: -26%; top: 30%; width: 152%; height: 36%; border-radius: 50%;
-  border: 1.2vmax solid rgba(255, 255, 255, 0.7); transform: rotate(-16deg);
+  border: 1.2vmax solid rgba(170, 215, 255, 0.28); transform: rotate(-16deg);
 }
 
 /* 2 · crystal realm: iridescent shards on an icy sky */
 .w-crystal {
   background:
-    radial-gradient(100% 70% at 85% 10%, #ddf4ff 0%, transparent 60%),
-    radial-gradient(90% 70% at 10% 90%, #e6e4ff 0%, transparent 60%),
-    linear-gradient(160deg, #eef2ff 0%, #e3ecff 55%, #dff3ff 100%);
+    radial-gradient(100% 70% at 85% 10%, #bcd3f3 0%, transparent 60%),
+    radial-gradient(90% 70% at 10% 90%, #c7c6ee 0%, transparent 60%),
+    linear-gradient(160deg, #d0d9f3 0%, #bfcded 55%, #b8d3ec 100%);
 }
-.w-crystal .c1 { width: 56vmax; height: 34vmax; left: -12vmax; top: -6vmax; background: radial-gradient(closest-side, #ffffff, transparent); opacity: 0.85; }
-.w-crystal .c2 { width: 50vmax; height: 30vmax; right: -14vmax; bottom: -8vmax; background: radial-gradient(closest-side, #bfe9ff, transparent); opacity: 0.8; animation-duration: 44s; }
+.w-crystal .c1 { width: 56vmax; height: 34vmax; left: -12vmax; top: -6vmax; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.4), transparent); }
+.w-crystal .c2 { width: 50vmax; height: 30vmax; right: -14vmax; bottom: -8vmax; background: radial-gradient(closest-side, rgba(150, 205, 240, 0.55), transparent); animation-duration: 44s; }
 
 /* 3 · obsidian caldera: black glass, lava glow, embers */
 .w-obsidian { background: linear-gradient(180deg, #08060a 0%, #140c10 60%, #26100d 100%); }

@@ -44,14 +44,14 @@ export function Board() {
       // glass body
       const g = ctx.createLinearGradient(x, y, x + s, y + s)
       if (lit) {
-        g.addColorStop(0, 'rgba(255,255,255,0.95)')
-        g.addColorStop(1, 'rgba(170,215,250,0.8)')
+        g.addColorStop(0, 'rgba(160,210,255,0.6)')
+        g.addColorStop(1, 'rgba(80,140,225,0.5)')
       } else if (blocked) {
-        g.addColorStop(0, 'rgba(160,185,215,0.55)')
-        g.addColorStop(1, 'rgba(140,165,200,0.4)')
+        g.addColorStop(0, 'rgba(70,90,130,0.5)')
+        g.addColorStop(1, 'rgba(40,58,96,0.45)')
       } else {
-        g.addColorStop(0, 'rgba(255,255,255,0.55)')
-        g.addColorStop(1, 'rgba(205,228,250,0.35)')
+        g.addColorStop(0, 'rgba(120,165,230,0.2)')
+        g.addColorStop(1, 'rgba(70,110,180,0.12)')
       }
       ctx.fillStyle = g
       ctx.beginPath()
@@ -59,7 +59,7 @@ export function Board() {
       ctx.fill()
 
       // crystal facet
-      ctx.fillStyle = `rgba(255,255,255,${0.18 + shimmer * 0.2 + (lit ? 0.25 : 0)})`
+      ctx.fillStyle = `rgba(200,225,255,${0.05 + shimmer * 0.07 + (lit ? 0.12 : 0)})`
       ctx.beginPath()
       ctx.moveTo(x + s * 0.12, y + s * 0.12)
       ctx.lineTo(x + s * 0.88, y + s * 0.12)
@@ -68,13 +68,13 @@ export function Board() {
       ctx.fill()
 
       ctx.lineWidth = 1.2
-      ctx.strokeStyle = lit ? 'rgba(70,160,225,0.85)' : 'rgba(255,255,255,0.8)'
+      ctx.strokeStyle = lit ? 'rgba(130,205,255,0.9)' : 'rgba(140,190,255,0.28)'
       ctx.beginPath()
       ctx.roundRect(x, y, s, s, s * 0.22)
       ctx.stroke()
 
       if (blocked) {
-        ctx.strokeStyle = 'rgba(100,130,170,0.7)'
+        ctx.strokeStyle = 'rgba(120,150,195,0.6)'
         ctx.lineWidth = 2
         const m = s * 0.3
         ctx.beginPath()
@@ -109,8 +109,8 @@ export function Board() {
         }
         ctx.stroke()
       }
-      trail(cell * 0.2, 'rgba(120,190,240,0.28)')
-      trail(cell * 0.06, 'rgba(40,130,210,0.92)')
+      trail(cell * 0.2, 'rgba(110,190,255,0.25)')
+      trail(cell * 0.06, 'rgba(150,225,255,0.95)')
 
       // head orb
       let head = centre(board.path[Math.min(reached, total)])
@@ -121,7 +121,7 @@ export function Board() {
       }
       const orb = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, cell * 0.32)
       orb.addColorStop(0, 'rgba(255,255,255,1)')
-      orb.addColorStop(0.4, 'rgba(120,200,240,0.85)')
+      orb.addColorStop(0.4, 'rgba(120,205,255,0.8)')
       orb.addColorStop(1, 'rgba(120,200,240,0)')
       ctx.fillStyle = orb
       ctx.beginPath()
@@ -137,9 +137,9 @@ export function Board() {
       const c = centre(board.path[st])
       const label = String(board.labels[st])
       ctx.lineWidth = 4
-      ctx.strokeStyle = 'rgba(255,255,255,0.9)'
+      ctx.strokeStyle = 'rgba(8,18,40,0.85)'
       ctx.strokeText(label, c.x + cell * 0.2, c.y - cell * 0.2)
-      ctx.fillStyle = 'rgba(25,70,120,0.95)'
+      ctx.fillStyle = 'rgba(225,242,255,0.97)'
       ctx.fillText(label, c.x + cell * 0.2, c.y - cell * 0.2)
     }
   })
