@@ -1,8 +1,11 @@
 import type { Level } from './solver'
 
-/** Generated offline with the solver: each has exactly one solution and dead-end forks. */
+/**
+ * Level 33 and 57 are the real boards from the Prime Path store screenshots.
+ * Locked cells are the greyed-out tiles in level 33.
+ */
 export const LEVELS: Level[] = [
-  { size: 3, nums: [1, 4, 1, 5, 9, 9, 3, 4, 9], blocked: [] },
-  { size: 3, nums: [7, 1, 2, 6, 1, 9, 7, 2, 8], blocked: [] },
-  { size: 4, nums: [8, 5, 2, 1, 6, 2, 2, 7, 8, 3, 1, 6, 1, 4, 1, 7], blocked: [] },
+  { name: 'tutorial', size: 3, nums: [4, 6, 3, 1, 9, 2, 8, 5, 4], locked: [], targets: [10, 12] },
+  { name: '33', size: 4, nums: [4, 15, 1, 5, 11, 11, 2, 6, 5, 11, 4, 3, 15, 2, 4, 4], locked: [0, 1, 4], targets: [19, 13] },
+  { name: '57', size: 4, nums: [19, 19, 8, 8, 6, 20, 3, 6, 11, 6, 3, 8, 3, 19, 10, 10], locked: [], targets: [27, 39, 45] },
 ]

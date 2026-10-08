@@ -18,17 +18,21 @@ export interface Dict {
   demo: {
     title: string
     level: string
+    levelNames: string[]
     rule: string
-    start: string
-    goal: string
+    targets: string
     idle: string
     win: string
     stuck: string
     undo: string
     reset: string
+    check: string
     solver: string
-    errors: Record<'blocked' | 'visited' | 'far' | 'sum', string>
-    stats: (solutions: number, dead: number, nodes: number, diff: number) => string
+    live: (sum: number) => string
+    noPrime: string
+    noMatch: (sum: number) => string
+    solved: (t: number) => string
+    stats: (swipes: number[], nodes: number) => string
   }
   soon: { title: string; text: string }
 }
