@@ -42,12 +42,15 @@ export const tr: Dict = {
     hero: 'Açılış',
     about: 'Eğitim',
     prime: 'Prime Path',
+    experience: 'Tempo',
+    skills: 'Perkler',
   },
   ach: {
     unlocked: 'Başarım kazanıldı',
     items: {
       explorer: 'Kâşif — kaydırmaya başladın',
       student: 'Hızlı Öğrenen — eğitimi bitirdin',
+      fullbuild: 'Tam Build — dört perkin hepsi kuşanıldı',
       solver: 'Bulmaca Çözücü — bir Prime Path seviyesini çözdün',
     },
   },
@@ -91,8 +94,109 @@ export const tr: Dict = {
     solved: (t) => `${t} tamam!`,
     stats: (s, n) => `Çözücü: hedef başına ${s.join(' / ')} geçerli kaydırma · ${n.toLocaleString('tr')} durum tarandı`,
   },
-  soon: {
-    title: 'Sıradaki seviye yükleniyor…',
-    text: 'Sonraki bölümler hazırlanıyor. Yakında tekrar gel.',
+  exp: {
+    eyebrow: 'Deneyim',
+    title: 'Gnarly Game Studio',
+    role: 'Oyun Tasarımcısı (Stajyer) · Temmuz – Eylül 2026',
+    axis: ['sakin', 'gergin'],
+    items: [
+      {
+        k: 'Seviyeler',
+        t: 'Stres eğrisiyle birlikte komple seviye tasarımları.',
+        d: 'Tam seviyeler tasarladım, oyuncu stresini ve temposunu haritaladım, tempo raporlarını doğrudan baş tasarımcılara sundum.',
+      },
+      {
+        k: 'Boss önerileri',
+        t: 'Sıra tabanlı bir oyun için on boss mekaniği önerdim.',
+        d: 'Biri onaylandı ve canlı oyuna eklendi.',
+        stat: { n: '10 → 1', l: 'önerilen → oyuna giren' },
+      },
+      {
+        k: 'Pazar',
+        t: 'Üst sıradaki mobil oyunlarda rakip araştırması.',
+        d: 'Gelir modellerini değerlendirdim ve uygulanabilir tasarım raporlarına çevirdim.',
+      },
+      {
+        k: 'Playable reklam',
+        t: 'Reklamı dönüştüren yenilgi senaryoları.',
+        d: 'Playable reklam test verilerini analiz ettim, etkileşimi ve dönüşümü artıran yenilgi senaryoları tasarladım.',
+      },
+      {
+        k: 'Denge',
+        t: 'Savaş ölçekleme ve rogue-lite perk kartları.',
+        d: 'Canlıdaki amiral gemisi cover-shooter’da savaş ölçekleme sayılarını, temel statları ve perk kartı ilerlemesini dengeledim.',
+      },
+      {
+        k: 'QA',
+        t: 'Her yeni seviye paketinde günlük QA.',
+        d: 'Çarpışma hatalarını, istenmeyen kısayol çözümlerini ve ani zorluk sıçramalarını oyunculara ulaşmadan temizledim.',
+      },
+      {
+        k: 'Prototip',
+        t: 'Mühendislik sprintlerinden önce kanıtlanan mekanikler.',
+        d: 'Uygulanabilirliği erken doğrulamak için Unity’de, yapay zekâ destekli kodlamayla deneysel mekanikler ve sahneler prototipledim.',
+      },
+    ],
+  },
+  skills: {
+    eyebrow: 'Perkler',
+    title: 'Build’ini seç',
+    sub: 'Kuşanmak için karta dokun. Tam build için dördünü de kuşan.',
+    equip: 'Kuşan',
+    equipped: 'Kuşanıldı',
+    count: (n, total) => `${n}/${total} perk kuşanıldı`,
+    cards: [
+      {
+        rarity: 'legendary',
+        name: 'Oyun Tasarım Sistemleri',
+        tag: 'Ana build',
+        items: [
+          'Üretim GDD’si yazımı',
+          'Core, meso ve macro döngüler',
+          'Seviye tasarımı ve zorluk temposu',
+          'Bilişsel tuzak ve bulmaca mekanikleri',
+          'Savaş ve stat ölçekleme dengesi',
+          'Onboarding ve eğitim müfredatı',
+          'Oyun hissi: ses ve haptik',
+        ],
+      },
+      {
+        rarity: 'epic',
+        name: 'Ekonomi ve Gelir Modeli',
+        tag: 'Live ops',
+        items: [
+          'Hibrit IAP + reklam modelleri',
+          'Kademeli katalog ve çıpa fiyatlama',
+          'İlerlemeye bağlı reklam yerleşimi',
+          'Elde tutma meta’sı: codex, streak, pass',
+          'Rakip kıyaslama ve analizi',
+          'Playable reklam analitiği',
+        ],
+      },
+      {
+        rarity: 'rare',
+        name: 'Motor ve Kod',
+        tag: 'Yapıcı',
+        items: [
+          'Unity 2D/3D ve C#',
+          'TypeScript ve React 19',
+          'Android için Capacitor',
+          'Yapay zekâ destekli hızlı prototipleme',
+          'Git branch iş akışları',
+        ],
+      },
+      {
+        rarity: 'rare',
+        name: 'Analitik, QA ve Backend',
+        tag: 'Veri odaklı',
+        items: [
+          'Seviye hunisi ve kayıp takibi (Firebase, GameAnalytics)',
+          'Remote Config ile canlı ayar',
+          'Seviye QA ve istenmeyen çözüm tespiti',
+          'Supabase (PostgreSQL ve Edge Functions)',
+          'Python FastAPI, REST ve Postman',
+        ],
+      },
+    ],
   },
 }

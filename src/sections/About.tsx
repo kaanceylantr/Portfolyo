@@ -49,10 +49,6 @@ export function About() {
           </li>
         ))}
       </ol>
-      <div className="soon">
-        <b>{t.soon.title}</b>
-        <span>{t.soon.text}</span>
-      </div>
     </section>
   )
 }

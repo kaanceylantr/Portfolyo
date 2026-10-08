@@ -120,11 +120,6 @@ main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); }
 .step-n { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
 .step h3 { margin-top: 12px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 300; line-height: 1.2; }
 .step p { margin-top: 12px; line-height: 1.65; color: #51477f; }
-.soon {
-  margin-top: 24vh; display: flex; flex-direction: column; gap: 6px; max-width: 34ch;
-  font-size: 14px; color: var(--ink-soft);
-}
-.soon b { color: var(--ink); font-weight: 600; font-size: 16px; }
 
 /* ---------- small screens: board becomes a soft backdrop ---------- */
 @media (max-width: 760px) {
@@ -141,7 +136,7 @@ main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); }
 
 /* ---------- Prime Path section ---------- */
 .board-wrap { transition: opacity 0.6s; }
-html[data-chapter='prime'] .board-wrap { opacity: 0.18; }
+html:is([data-chapter='prime'], [data-chapter='experience'], [data-chapter='skills']) .board-wrap { opacity: 0.18; }
 
 .prime { padding: 10vh 0 22vh; max-width: min(52vw, 760px); display: flex; flex-direction: column; gap: 9vh; }
 .prime-head h2 { font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1; margin-top: 18px; color: var(--ink); }
@@ -245,4 +240,72 @@ html[data-chapter='prime'] .board-wrap { opacity: 0.18; }
   .traps ul { grid-template-columns: 1fr; }
   .demo { max-width: none; }
   .prime { gap: 7vh; }
+}
+
+/* ---------- Experience: pacing curve ---------- */
+.exp, .skills { padding: 12vh 0 14vh; }
+.ex-title { margin-top: 10px; font-size: clamp(2rem, 5.5vw, 3.8rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1.05; }
+.ex-role { margin-top: 12px; color: var(--ink-soft); font-size: clamp(0.95rem, 1.6vw, 1.1rem); }
+.ex-head { margin-bottom: 9vh; }
+.ex-head .eyebrow { margin-bottom: 0; }
+.ex-wrap { position: relative; max-width: min(56vw, 720px); --gutter: 84px; }
+.ex-curve { position: absolute; left: 0; top: 0; width: var(--gutter); overflow: visible; pointer-events: none; }
+.ex-axis {
+  position: absolute; left: 0; top: -26px; width: var(--gutter); display: flex; justify-content: space-between;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+}
+.ex-track, .ex-line { fill: none; stroke-width: 3; stroke-linecap: round; }
+.ex-track { stroke: rgba(160, 140, 230, 0.25); }
+.ex-line { stroke: #8f78f5; stroke-dashoffset: 0; }
+.ex-node { fill: #fff; stroke: #b9a7ff; stroke-width: 2; }
+.ex-glow { fill: rgba(165, 140, 255, 0.28); }
+.ex-head-dot { fill: #fff; stroke: #8f78f5; stroke-width: 3; }
+.ex-list { list-style: none; padding: 0 0 0 var(--gutter); display: flex; flex-direction: column; gap: 14vh; }
+.ex-card {
+  margin-left: 18px; padding: 24px 26px 26px; border-radius: 26px; background: var(--glass); border: 1px solid var(--glass-edge);
+  box-shadow: 0 20px 60px rgba(120, 100, 220, 0.1), inset 0 1px 0 #fff;
+  opacity: 0.5; transform: translateY(8px); transition: opacity 0.5s, transform 0.5s, box-shadow 0.5s;
+}
+.ex-card.reached { opacity: 1; transform: none; box-shadow: 0 24px 70px rgba(120, 100, 220, 0.2), inset 0 1px 0 #fff; }
+.ex-card h4 { margin-top: 10px; font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 400; line-height: 1.25; }
+.ex-card p { margin-top: 10px; line-height: 1.6; color: #51477f; font-size: 0.95rem; }
+.ex-stat { margin-top: 16px; display: flex; align-items: baseline; gap: 12px; }
+.ex-stat b { font-size: 2.2rem; font-weight: 200; color: #7a5cf0; }
+.ex-stat span { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* ---------- Skills: perk cards ---------- */
+.sk-count { margin-top: 18px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.perks { margin-top: 7vh; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: min(56vw, 760px); }
+.perk {
+  all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 6px; padding: 22px;
+  border-radius: 26px; background: rgba(255, 255, 255, 0.7); border: 1.5px solid var(--glass-edge);
+  box-shadow: 0 18px 50px rgba(120, 100, 220, 0.12); transition: transform 0.25s, box-shadow 0.3s, border-color 0.3s;
+  --c: #b9a7ff; will-change: transform; -webkit-tap-highlight-color: transparent;
+}
+.perk:focus-visible { outline: 2px solid var(--lilac); outline-offset: 3px; }
+.perk.legendary { --c: #f0b84a; }
+.perk.epic { --c: #c07af0; }
+.perk.rare { --c: #6fb8f0; }
+.perk.on { border-color: var(--c); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 28%, transparent), 0 24px 70px color-mix(in srgb, var(--c) 35%, transparent); }
+.perk-top { display: flex; justify-content: space-between; align-items: center; }
+.perk-ico { font-style: normal; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; color: #fff; background: var(--c); font-size: 16px; }
+.perk-top em { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); }
+.perk-name { margin-top: 8px; font-size: 1.15rem; font-weight: 600; line-height: 1.2; }
+.perk-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+.perk ul { list-style: none; padding: 0; margin: 10px 0 14px; display: flex; flex-direction: column; gap: 6px; }
+.perk li { font-size: 13px; line-height: 1.4; color: #51477f; padding-left: 14px; position: relative; }
+.perk li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border-radius: 50%; background: var(--c); }
+.perk-btn { margin-top: auto; align-self: flex-start; padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; background: #fff; border: 1px solid var(--glass-edge); }
+.perk.on .perk-btn { background: var(--c); color: #fff; border-color: transparent; }
+
+@media (max-width: 760px) {
+  .ex-wrap { max-width: none; --gutter: 52px; }
+  .ex-card { margin-left: 10px; padding: 20px; }
+  .ex-list { gap: 10vh; }
+  .ex-card, .perk, .facts div, .traps li { background: rgba(255, 255, 255, 0.88); }
+  html:is([data-chapter='prime'], [data-chapter='experience'], [data-chapter='skills']) .board-wrap { opacity: 0.1; }
+  .perks { grid-template-columns: 1fr; max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ex-card { transition: none; opacity: 1; transform: none; }
 }

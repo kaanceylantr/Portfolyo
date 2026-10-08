@@ -34,6 +34,21 @@ export interface Dict {
     solved: (t: number) => string
     stats: (swipes: number[], nodes: number) => string
   }
-  soon: { title: string; text: string }
+  exp: {
+    eyebrow: string
+    title: string
+    role: string
+    axis: [string, string]
+    items: { k: string; t: string; d: string; stat?: { n: string; l: string } }[]
+  }
+  skills: {
+    eyebrow: string
+    title: string
+    sub: string
+    equip: string
+    equipped: string
+    count: (n: number, total: number) => string
+    cards: { rarity: string; name: string; tag: string; items: string[] }[]
+  }
 }
 export type Lang = 'tr' | 'en'

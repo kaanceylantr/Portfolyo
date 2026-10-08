@@ -42,12 +42,15 @@ export const en: Dict = {
     hero: 'Boot',
     about: 'Tutorial',
     prime: 'Prime Path',
+    experience: 'Pacing',
+    skills: 'Perks',
   },
   ach: {
     unlocked: 'Achievement unlocked',
     items: {
       explorer: 'Explorer — you started scrolling',
       student: 'Quick Learner — tutorial complete',
+      fullbuild: 'Full Build — all four perks equipped',
       solver: 'Puzzle Solver — you cracked a Prime Path level',
     },
   },
@@ -91,8 +94,109 @@ export const en: Dict = {
     solved: (t) => `${t} reached!`,
     stats: (s, n) => `Solver: ${s.join(' / ')} valid swipes per target · ${n.toLocaleString('en')} states searched`,
   },
-  soon: {
-    title: 'Next level loading…',
-    text: 'The next chapters are being built. Come back soon.',
+  exp: {
+    eyebrow: 'Experience',
+    title: 'Gnarly Game Studio',
+    role: 'Game Designer (Intern) · July – September 2026',
+    axis: ['calm', 'intense'],
+    items: [
+      {
+        k: 'Levels',
+        t: 'Complete level designs, with a stress curve.',
+        d: 'Authored full levels, mapped player stress and pacing, and presented pacing reports directly to the lead designers.',
+      },
+      {
+        k: 'Boss pitches',
+        t: 'Ten boss mechanics pitched for a turn-based title.',
+        d: 'One of them was approved and implemented into the live game.',
+        stat: { n: '10 → 1', l: 'pitched → shipped' },
+      },
+      {
+        k: 'Market',
+        t: 'Competitor research across top-chart mobile titles.',
+        d: 'Evaluated monetization models and turned them into actionable design reports.',
+      },
+      {
+        k: 'Playable ads',
+        t: 'Fail-states that make ads convert.',
+        d: 'Analysed playable-ad test data and designed fail-state scenarios that improved creative engagement and conversion.',
+      },
+      {
+        k: 'Balance',
+        t: 'Combat scaling and rogue-lite perk cards.',
+        d: 'Balanced combat scaling numbers, base stats and perk-card progression on a live flagship cover-shooter.',
+      },
+      {
+        k: 'QA',
+        t: 'Daily QA on every new batch of levels.',
+        d: 'Removed collision glitches, unintended shortcut solutions and sudden difficulty spikes before they reached players.',
+      },
+      {
+        k: 'Prototypes',
+        t: 'Mechanics proven before engineering sprints.',
+        d: 'Prototyped experimental mechanics and scenes in Unity with AI-assisted scripting to validate feasibility early.',
+      },
+    ],
+  },
+  skills: {
+    eyebrow: 'Perks',
+    title: 'Pick your build',
+    sub: 'Tap a card to equip it. Equip all four for the full build.',
+    equip: 'Equip',
+    equipped: 'Equipped',
+    count: (n, total) => `${n}/${total} perks equipped`,
+    cards: [
+      {
+        rarity: 'legendary',
+        name: 'Game Design Systems',
+        tag: 'Core build',
+        items: [
+          'Production GDD authoring',
+          'Core, meso & macro loops',
+          'Level design & difficulty pacing',
+          'Cognitive trap & puzzle mechanics',
+          'Combat & stat-scaling balance',
+          'Onboarding & tutorial curriculum',
+          'Game feel: audio & haptics',
+        ],
+      },
+      {
+        rarity: 'epic',
+        name: 'Economy & Monetization',
+        tag: 'Live ops',
+        items: [
+          'Hybrid IAP + ads models',
+          'Tiered catalog & anchor pricing',
+          'Progression-gated ad placement',
+          'Retention meta: codex, streaks, pass',
+          'Competitor benchmarking & teardowns',
+          'Playable-ad analytics',
+        ],
+      },
+      {
+        rarity: 'rare',
+        name: 'Engines & Code',
+        tag: 'Builder',
+        items: [
+          'Unity 2D/3D & C#',
+          'TypeScript & React 19',
+          'Capacitor for Android',
+          'Rapid prototyping, AI-assisted',
+          'Git branch workflows',
+        ],
+      },
+      {
+        rarity: 'rare',
+        name: 'Analytics, QA & Backend',
+        tag: 'Data-driven',
+        items: [
+          'Funnel telemetry & churn (Firebase, GameAnalytics)',
+          'Live tuning with Remote Config',
+          'Level QA & unintended-solution spotting',
+          'Supabase (PostgreSQL & Edge Functions)',
+          'Python FastAPI, REST & Postman',
+        ],
+      },
+    ],
   },
 }
