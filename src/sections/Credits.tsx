@@ -3,11 +3,16 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { CODEX_PRIMES, useStore } from '../app/store'
+
+const TROPHIES = ['explorer', 'student', 'solver', 'fullbuild', 'bridge', 'pianist', 'striker', 'poet', 'codex', 'hired']
 import { reducedMotion } from '../engine/perf'
+import { LINKS } from '../content/links'
 
 export default function Credits() {
   const t = useT()
   const done = useStore((s) => s.codex.length >= CODEX_PRIMES.length)
+  const ach = useStore((s) => s.ach)
+  const codex = useStore((s) => s.codex)
   const root = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -25,22 +30,52 @@ export default function Credits() {
     <section ref={root} className="credits">
       <h2 className="eyebrow">{t.credits.eyebrow}</h2>
       <h3 className="ex-title">{t.credits.title}</h3>
-      <dl className="sheet">
-        {t.credits.sheet.map((r) => (
-          <div key={r.k} className="sheet-row">
-            <dt>{r.k}</dt>
-            <dd>
-              <b>{r.v}</b>
-              <span>{r.d}</span>
-            </dd>
-          </div>
-        ))}
-      </dl>
-      {done && <p className="cdx-done">◆ {t.credits.codexDone}</p>}
+      <div className="split cr-split">
+        <div>
+          <dl className="sheet">
+            {t.credits.sheet.map((r) => (
+              <div key={r.k} className="sheet-row">
+                <dt>{r.k}</dt>
+                <dd>
+                  <b>{r.v}</b>
+                  <span>{r.d}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {done && <p className="cdx-done">◆ {t.credits.codexDone}</p>}
+        </div>
+        <aside className="side cr-side">
+          <h3 className="side-h">
+            {t.credits.trophies} · {ach.length}/{TROPHIES.length}
+          </h3>
+          <ul className="trophies">
+            {TROPHIES.map((id) => {
+              const got = ach.includes(id)
+              return (
+                <li key={id} className={got ? 'got' : ''}>
+                  <i>{got ? '✦' : '🔒'}</i>
+                  <span>{got ? t.ach.items[id] : t.credits.locked}</span>
+                </li>
+              )
+            })}
+          </ul>
+          <p className="side-note">
+            ◆ {t.codex.title}: {codex.length}/{CODEX_PRIMES.length}
+          </p>
+        </aside>
+      </div>
       <footer className="foot">
         <p>{t.credits.madeBy}</p>
         <p className="foot-sub">{t.credits.stack}</p>
         <p className="foot-sub">{t.credits.refs}</p>
+        <div className="social">
+          {LINKS.map((l) => (
+            <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">
+              {l.label} ↗
+            </a>
+          ))}
+        </div>
         <button className="ghost" onClick={() => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' })}>
           ↑ {t.credits.top}
         </button>

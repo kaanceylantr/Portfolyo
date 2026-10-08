@@ -55,30 +55,48 @@ export default function Skills() {
           {t.skills.count(on.size, total)}
         </p>
       </div>
-      <div className="perks">
-        {t.skills.cards.map((c, i) => (
-          <button
-            key={c.name}
-            className={`perk ${c.rarity}${on.has(i) ? ' on' : ''}`}
-            aria-pressed={on.has(i)}
-            onClick={() => toggle(i)}
-            onPointerMove={tilt}
-            onPointerLeave={untilt}
-          >
-            <span className="perk-top">
-              <i className="perk-ico">{ICON[i]}</i>
-              <em>{c.rarity}</em>
-            </span>
-            <b className="perk-name">{c.name}</b>
-            <small className="perk-tag">{c.tag}</small>
-            <ul>
-              {c.items.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-            <span className="perk-btn">{on.has(i) ? `✓ ${t.skills.equipped}` : t.skills.equip}</span>
-          </button>
-        ))}
+      <div className="split sk-split">
+        <div className="perks">
+          {t.skills.cards.map((c, i) => (
+            <button
+              key={c.name}
+              className={`perk ${c.rarity}${on.has(i) ? ' on' : ''}`}
+              aria-pressed={on.has(i)}
+              onClick={() => toggle(i)}
+              onPointerMove={tilt}
+              onPointerLeave={untilt}
+            >
+              <span className="perk-top">
+                <i className="perk-ico">{ICON[i]}</i>
+                <em>{c.rarity}</em>
+              </span>
+              <b className="perk-name">{c.name}</b>
+              <small className="perk-tag">{c.tag}</small>
+              <ul>
+                {c.items.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+              <span className="perk-btn">{on.has(i) ? `✓ ${t.skills.equipped}` : t.skills.equip}</span>
+            </button>
+          ))}
+        </div>
+
+        <aside className="side sk-side">
+          <h3 className="side-h">{t.skills.slots}</h3>
+          <ul className="slots">
+            {t.skills.cards.map((c, i) => (
+              <li key={c.name} className={`${c.rarity}${on.has(i) ? ' on' : ''}`}>
+                <i>{on.has(i) ? ICON[i] : '+'}</i>
+                <div>
+                  <b>{on.has(i) ? c.name : t.skills.empty}</b>
+                  <small>{on.has(i) ? c.tag : ''}</small>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="side-note">{t.skills.sideNote}</p>
+        </aside>
       </div>
     </section>
   )

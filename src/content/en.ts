@@ -117,6 +117,8 @@ export const en: Dict = {
     title: 'Experiments & expeditions',
     sub: 'Smaller builds where I test one idea hard: a mechanic, a pipeline, a system.',
     reward: 'Reward',
+    log: 'Quest log',
+    done: 'Completed',
     items: [
       {
         id: 'draw',
@@ -220,13 +222,20 @@ export const en: Dict = {
     name: 'The Unfilled Position',
     level: 'Lv. ∞',
     hp: 'HP',
-    intro: 'It guards a seat on your team. Use my skills — or just tap it.',
+    intro: 'Every team has an empty seat. This boss stands for yours: beat it and the contact options unlock. Prefer not to fight? Skip it below.',
     hit: 'Tap the boss to hit it',
+    how: 'How to play',
+    steps: [
+      'Tap the boss: 1 damage.',
+      'Use one of my skills: 2 damage, then it recharges.',
+      'At 0 HP the boss falls and you can contact me.',
+    ],
+    skillsTitle: 'My skills, and what each one means',
     skills: [
-      { name: 'Level Pacing', note: 'Tension curve' },
-      { name: 'Balance Patch', note: 'Numbers tuned' },
-      { name: 'Funnel Insight', note: 'Churn found' },
-      { name: 'Prime Solver', note: 'Solvable, proven' },
+      { name: 'Level Pacing', note: 'I shape tension and relief so a level feels good to play.' },
+      { name: 'Balance Patch', note: 'I tune numbers until combat and the economy feel fair.' },
+      { name: 'Funnel Insight', note: 'I read player data to find where people quit and why.' },
+      { name: 'Prime Solver', note: 'I build tools that prove every level can be solved.' },
     ],
     skip: 'Skip the fight, say hello',
     winTitle: 'Position filled!',
@@ -250,12 +259,20 @@ export const en: Dict = {
     refs: 'References available on request.',
     codexDone: 'Prime Codex complete: the secret level is open in the Prime Path demo.',
     top: 'Back to the start',
+    trophies: 'Trophy shelf',
+    locked: 'Locked',
   },
   exp: {
     eyebrow: 'Experience',
     title: 'Gnarly Game Studio',
     role: 'Game Designer (Intern) · July – September 2026',
     axis: ['calm', 'intense'],
+    side: { title: 'Tension readout', now: 'Now', note: 'Illustrative: how intense each kind of work felt, plotted on the curve.' },
+    facts: [
+      { n: '3 mo', l: 'July – September 2026' },
+      { n: '10 → 1', l: 'boss mechanics pitched → shipped' },
+      { n: '2', l: 'titles: a turn-based game and a live cover-shooter' },
+    ],
     items: [
       {
         k: 'Levels',
@@ -302,6 +319,9 @@ export const en: Dict = {
     equip: 'Equip',
     equipped: 'Equipped',
     count: (n, total) => `${n}/${total} perks equipped`,
+    slots: 'Your build',
+    empty: 'Empty slot',
+    sideNote: 'Each card is a set of skills I use every day. Equip them all to assemble the full designer.',
     cards: [
       {
         rarity: 'legendary',

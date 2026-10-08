@@ -117,6 +117,8 @@ export const tr: Dict = {
     title: 'Deneyler ve keşifler',
     sub: 'Tek bir fikri sonuna kadar denediğim küçük işler: bir mekanik, bir boru hattı, bir sistem.',
     reward: 'Ödül',
+    log: 'Görev günlüğü',
+    done: 'Tamamlandı',
     items: [
       {
         id: 'draw',
@@ -220,13 +222,20 @@ export const tr: Dict = {
     name: 'Boş Kadro',
     level: 'Sv. ∞',
     hp: 'Can',
-    intro: 'Ekibinde bir koltuğu koruyor. Yeteneklerimi kullan ya da sadece dokun.',
+    intro: 'Her ekibin boş bir koltuğu vardır. Bu boss seninkini temsil ediyor: yen, iletişim seçenekleri açılsın. Savaşmak istemezsen aşağıdan atla.',
     hit: 'Vurmak için boss’a dokun',
+    how: 'Nasıl oynanır',
+    steps: [
+      'Boss’a dokun: 1 hasar.',
+      'Yeteneklerimden birini kullan: 2 hasar, sonra bir süre dolar.',
+      'Can 0 olunca boss düşer ve bana ulaşabilirsin.',
+    ],
+    skillsTitle: 'Yeteneklerim ve ne anlama geldikleri',
     skills: [
-      { name: 'Seviye Temposu', note: 'Gerilim eğrisi' },
-      { name: 'Denge Yaması', note: 'Sayılar ayarlandı' },
-      { name: 'Huni Analizi', note: 'Kayıp bulundu' },
-      { name: 'Asal Çözücü', note: 'Çözülebilir, kanıtlı' },
+      { name: 'Seviye Temposu', note: 'Gerilimi ve rahatlamayı ayarlarım, seviye oynaması keyifli olur.' },
+      { name: 'Denge Yaması', note: 'Savaş ve ekonomi adil hissettirene kadar sayıları ayarlarım.' },
+      { name: 'Huni Analizi', note: 'Oyuncu verisinden insanların nerede ve neden bıraktığını bulurum.' },
+      { name: 'Asal Çözücü', note: 'Her seviyenin çözülebildiğini kanıtlayan araçlar yazarım.' },
     ],
     skip: 'Savaşı atla, merhaba de',
     winTitle: 'Kadro doldu!',
@@ -250,12 +259,20 @@ export const tr: Dict = {
     refs: 'Referanslar istenirse paylaşılır.',
     codexDone: 'Prime Codex tamam: gizli seviye Prime Path demosunda açıldı.',
     top: 'Başa dön',
+    trophies: 'Kupa rafı',
+    locked: 'Kilitli',
   },
   exp: {
     eyebrow: 'Deneyim',
     title: 'Gnarly Game Studio',
     role: 'Oyun Tasarımcısı (Stajyer) · Temmuz – Eylül 2026',
     axis: ['sakin', 'gergin'],
+    side: { title: 'Gerilim göstergesi', now: 'Şimdi', note: 'Örnekleyici: her iş türünün ne kadar yoğun hissettirdiği, eğri üzerinde gösterildi.' },
+    facts: [
+      { n: '3 ay', l: 'Temmuz – Eylül 2026' },
+      { n: '10 → 1', l: 'önerilen boss mekaniği → oyuna giren' },
+      { n: '2', l: 'oyun: sıra tabanlı bir oyun ve canlı bir cover-shooter' },
+    ],
     items: [
       {
         k: 'Seviyeler',
@@ -302,6 +319,9 @@ export const tr: Dict = {
     equip: 'Kuşan',
     equipped: 'Kuşanıldı',
     count: (n, total) => `${n}/${total} perk kuşanıldı`,
+    slots: 'Senin build’in',
+    empty: 'Boş yuva',
+    sideNote: 'Her kart, her gün kullandığım becerilerin bir seti. Tam tasarımcıyı kurmak için hepsini kuşan.',
     cards: [
       {
         rarity: 'legendary',

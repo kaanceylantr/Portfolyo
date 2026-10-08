@@ -33,53 +33,59 @@ export default function PrimePath() {
     return () => ctx.revert()
   }, [])
 
+  const shots = Array.from({ length: SLOTS }, (_, i) => storeShots[i])
+
   return (
     <section ref={root} className="prime">
-      <div className="prime-head reveal">
-        <span className="chip">{t.prime.chip}</span>
-        <h2>{t.prime.title}</h2>
-        <p>{t.prime.sub}</p>
-      </div>
-
-      <div className="facts reveal">
-        {t.prime.facts.map((f) => (
-          <div key={f.l}>
-            <b>{f.n}</b>
-            <span>{f.l}</span>
+      <div className="split">
+        <div className="prime-main">
+          <div className="prime-head reveal">
+            <span className="chip">{t.prime.chip}</span>
+            <h2>{t.prime.title}</h2>
+            <p>{t.prime.sub}</p>
           </div>
-        ))}
-      </div>
 
-      <div className="reveal">
-        <PrimeDemo />
-      </div>
+          <div className="facts reveal">
+            {t.prime.facts.map((f) => (
+              <div key={f.l}>
+                <b>{f.n}</b>
+                <span>{f.l}</span>
+              </div>
+            ))}
+          </div>
 
-      <div className="traps reveal">
-        <h3>{t.prime.trapsTitle}</h3>
-        <ul>
-          {t.prime.traps.map((x) => (
-            <li key={x.t}>
-              <b>{x.t}</b>
-              <span>{x.d}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <div className="reveal">
+            <PrimeDemo />
+          </div>
 
-      <div className="shots reveal">
-        <h3>{t.prime.shotsTitle}</h3>
-        <div className="shot-row">
-          {Array.from({ length: Math.max(SLOTS, storeShots.length) }, (_, i) => (
-            <figure key={i} className="phone">
-              {storeShots[i] ? (
-                <img src={storeShots[i]} alt="Prime Path" loading="lazy" decoding="async" />
-              ) : (
-                <figcaption>{t.prime.shotSoon}</figcaption>
-              )}
-            </figure>
-          ))}
+          <div className="traps reveal">
+            <h3>{t.prime.trapsTitle}</h3>
+            <ul>
+              {t.prime.traps.map((x) => (
+                <li key={x.t}>
+                  <b>{x.t}</b>
+                  <span>{x.d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <p className="stack">{t.prime.stack}</p>
+
+        <aside className="side prime-side">
+          <h3 className="side-h">{t.prime.shotsTitle}</h3>
+          <div className="fan">
+            {shots.map((src, i) => (
+              <figure key={i} className={`phone f${i}`}>
+                {src ? <img src={src} alt="Prime Path" loading="lazy" decoding="async" /> : <figcaption>{t.prime.shotSoon}</figcaption>}
+              </figure>
+            ))}
+          </div>
+          <div className="tags side-tags">
+            {t.prime.stack.split(' · ').map((x) => (
+              <i key={x}>{x}</i>
+            ))}
+          </div>
+        </aside>
       </div>
     </section>
   )

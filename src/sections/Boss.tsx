@@ -6,17 +6,13 @@ import { useStore } from '../app/store'
 import { reducedMotion } from '../engine/perf'
 import { audio } from '../engine/audio'
 import { CodexPrime } from '../ui/CodexPrime'
+import { LINKS, MAIL } from '../content/links'
 
-const MAX = 100
-const MAIL = 'kaan.ceylan.tr@gmail.com'
-const LINKS = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/kaan-ceylan-67b050371/' },
-  { label: 'GitHub', href: 'https://github.com/kaanceylantr' },
-]
+const MAX = 5
 const COOLDOWN = 2.4
 
 function Boss({ hp, hurt }: { hp: number; hurt: boolean }) {
-  const low = hp < 35
+  const low = hp <= 2
   return (
     <svg className={`boss-art${hurt ? ' hurt' : ''}${hp <= 0 ? ' dead' : ''}`} viewBox="0 0 300 320" aria-hidden>
       <defs>
@@ -118,7 +114,7 @@ export default function BossSection() {
     if (cool[i] || won) return
     setCool((c) => c.map((v, k) => (k === i ? true : v)))
     setTimeout(() => setCool((c) => c.map((v, k) => (k === i ? false : v))), COOLDOWN * 1000)
-    damage(20, 30 + i * 14, 30 + (i % 2) * 18)
+    damage(2, 30 + i * 14, 30 + (i % 2) * 18)
   }
 
   const reset = () => {
@@ -136,57 +132,74 @@ export default function BossSection() {
         <p className="ex-role">{t.boss.intro}</p>
       </div>
 
-      <div className="boss-wrap">
-        <div className="hpbar" role="progressbar" aria-valuenow={hp} aria-valuemin={0} aria-valuemax={MAX} aria-label={t.boss.hp}>
-          <span>
-            {t.boss.hp} {hp}/{MAX} · {t.boss.level}
-          </span>
-          <div>
-            <i style={{ transform: `scaleX(${hp / MAX})` }} />
-          </div>
-        </div>
-
-        <div ref={arena} className="arena">
-          <button className="boss-hit" onClick={() => damage(4)} disabled={won} aria-label={t.boss.hit}>
-            <Boss hp={hp} hurt={hurt} />
-          </button>
-          {!won && <p className="boss-hint">{t.boss.hit}</p>}
-        </div>
-
-        {!won ? (
-          <>
-            <div className="skills-row">
-              {t.boss.skills.map((s, i) => (
-                <button key={s.name} className={`skill${cool[i] ? ' cool' : ''}`} onClick={() => skill(i)} disabled={cool[i]}>
-                  <b>{s.name}</b>
-                  <small>{s.note}</small>
-                  <i className="cd" style={cool[i] ? { animationDuration: `${COOLDOWN}s` } : undefined} />
-                </button>
+      <div className="split boss-grid">
+        <div className="boss-wrap">
+          <div className="hearts" role="progressbar" aria-valuenow={hp} aria-valuemin={0} aria-valuemax={MAX} aria-label={t.boss.hp}>
+            <span>
+              {t.boss.hp} {hp}/{MAX} · {t.boss.level}
+            </span>
+            <div>
+              {Array.from({ length: MAX }, (_, i) => (
+                <b key={i} className={i < hp ? 'full' : ''}>
+                  ♥
+                </b>
               ))}
             </div>
+          </div>
+
+          <div ref={arena} className="arena">
+            <button className="boss-hit" onClick={() => damage(1)} disabled={won} aria-label={t.boss.hit}>
+              <Boss hp={hp} hurt={hurt} />
+            </button>
+            {!won && <p className="boss-hint">{t.boss.hit}</p>}
+          </div>
+
+          {won && (
+            <div className="win-card">
+              <h4>{t.boss.winTitle}</h4>
+              <p>{t.boss.winText}</p>
+              <div className="win-actions">
+                <a className="cta" href={mailto}>
+                  {t.boss.mail}
+                </a>
+                {LINKS.map((l) => (
+                  <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">
+                    {l.label} ↗
+                  </a>
+                ))}
+                <button className="ghost" onClick={reset}>
+                  {t.boss.again}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <aside className="side boss-side">
+          <div className="howto">
+            <h4>{t.boss.how}</h4>
+            <ol>
+              {t.boss.steps.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ol>
+          </div>
+          <h4 className="side-h">{t.boss.skillsTitle}</h4>
+          <div className="skills-col">
+            {t.boss.skills.map((sk, i) => (
+              <button key={sk.name} className={`skill${cool[i] ? ' cool' : ''}`} onClick={() => skill(i)} disabled={cool[i] || won}>
+                <b>{sk.name}</b>
+                <small>{sk.note}</small>
+                <i className="cd" style={cool[i] ? { animationDuration: `${COOLDOWN}s` } : undefined} />
+              </button>
+            ))}
+          </div>
+          {!won && (
             <a className="skip" href={mailto}>
               {t.boss.skip} →
             </a>
-          </>
-        ) : (
-          <div className="win-card">
-            <h4>{t.boss.winTitle}</h4>
-            <p>{t.boss.winText}</p>
-            <div className="win-actions">
-              <a className="cta" href={mailto}>
-                {t.boss.mail}
-              </a>
-              {LINKS.map((l) => (
-                <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">
-                  {l.label} ↗
-                </a>
-              ))}
-              <button className="ghost" onClick={reset}>
-                {t.boss.again}
-              </button>
-            </div>
-          </div>
-        )}
+          )}
+        </aside>
       </div>
       <CodexPrime prime={17} style={{ right: '4%', top: '16%' }} />
     </section>

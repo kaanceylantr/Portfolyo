@@ -42,6 +42,8 @@ export default function Experience() {
   const path = useRef<SVGPathElement>(null)
   const dot = useRef<SVGGElement>(null)
   const [geo, setGeo] = useState<Geo | null>(null)
+  const [cur, setCur] = useState(0)
+  const curRef = useRef(0)
 
   // measure the cards, and again whenever the layout or language changes
   useEffect(() => {
@@ -77,6 +79,7 @@ export default function Experience() {
       p.style.strokeDasharray = 'none'
       cards.forEach((c) => c.classList.add('reached'))
       dot.current.style.display = 'none'
+      setCur(cards.length - 1)
       return
     }
 
@@ -90,7 +93,16 @@ export default function Experience() {
         const at = p.getPointAtLength(len * self.progress)
         p.style.strokeDashoffset = String(len * (1 - self.progress))
         dot.current!.setAttribute('transform', `translate(${at.x} ${at.y})`)
-        cards.forEach((c, i) => c.classList.toggle('reached', at.y >= geo.pts[i].y - 4))
+        let idx = 0
+        cards.forEach((c, i) => {
+          const on = at.y >= geo.pts[i].y - 4
+          c.classList.toggle('reached', on)
+          if (on) idx = i
+        })
+        if (idx !== curRef.current) {
+          curRef.current = idx
+          setCur(idx)
+        }
       },
     })
     st.update()
@@ -101,6 +113,9 @@ export default function Experience() {
     ScrollTrigger.refresh()
   }, [geo])
 
+  const tension = TENSION[cur] ?? 0.5
+  const item = t.exp.items[cur]
+
   return (
     <section ref={root} className="exp">
       <div className="ex-head">
@@ -109,41 +124,76 @@ export default function Experience() {
         <p className="ex-role">{t.exp.role}</p>
       </div>
 
-      <div className="ex-wrap">
-        <div className="ex-axis" aria-hidden>
-          <span>{t.exp.axis[0]}</span>
-          <span>{t.exp.axis[1]}</span>
+      <div className="split ex-split">
+        <div className="ex-wrap">
+          <div className="ex-axis" aria-hidden>
+            <span>{t.exp.axis[0]}</span>
+            <span>{t.exp.axis[1]}</span>
+          </div>
+          <svg ref={svg} className="ex-curve" width="100%" height={geo?.h ?? 0} aria-hidden>
+            {geo && (
+              <>
+                <path d={geo.d} className="ex-track" />
+                <path ref={path} d={geo.d} className="ex-line" />
+                {geo.pts.map((q, i) => (
+                  <circle key={i} cx={q.x} cy={q.y} r="4" className="ex-node" />
+                ))}
+                <g ref={dot}>
+                  <circle r="13" className="ex-glow" />
+                  <circle r="6" className="ex-head-dot" />
+                </g>
+              </>
+            )}
+          </svg>
+          <ol ref={list} className="ex-list">
+            {t.exp.items.map((it) => (
+              <li key={it.k} className="ex-card">
+                <span className="step-n">{it.k}</span>
+                <h4>{it.t}</h4>
+                <p>{it.d}</p>
+                {it.stat && (
+                  <div className="ex-stat">
+                    <b>{it.stat.n}</b>
+                    <span>{it.stat.l}</span>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
-        <svg ref={svg} className="ex-curve" width="100%" height={geo?.h ?? 0} aria-hidden>
-          {geo && (
-            <>
-              <path d={geo.d} className="ex-track" />
-              <path ref={path} d={geo.d} className="ex-line" />
-              {geo.pts.map((q, i) => (
-                <circle key={i} cx={q.x} cy={q.y} r="4" className="ex-node" />
-              ))}
-              <g ref={dot}>
-                <circle r="13" className="ex-glow" />
-                <circle r="6" className="ex-head-dot" />
-              </g>
-            </>
-          )}
-        </svg>
-        <ol ref={list} className="ex-list">
-          {t.exp.items.map((it) => (
-            <li key={it.k} className="ex-card">
-              <span className="step-n">{it.k}</span>
-              <h4>{it.t}</h4>
-              <p>{it.d}</p>
-              {it.stat && (
-                <div className="ex-stat">
-                  <b>{it.stat.n}</b>
-                  <span>{it.stat.l}</span>
-                </div>
-              )}
-            </li>
-          ))}
-        </ol>
+
+        <aside className="side ex-side">
+          <div className="gauge-card">
+            <span className="step-n">{t.exp.side.title}</span>
+            <div className="gauge-row">
+              <div className="gauge" aria-hidden>
+                <i style={{ transform: `scaleY(${tension})` }} />
+              </div>
+              <div>
+                <b className="gauge-n">{Math.round(tension * 100)}%</b>
+                <span className="gauge-now">
+                  {t.exp.side.now}: {item.k}
+                </span>
+              </div>
+            </div>
+            <p className="side-note">{t.exp.side.note}</p>
+          </div>
+          <div className="stat-col">
+            {t.exp.facts.map((f) => (
+              <div key={f.l}>
+                <b>{f.n}</b>
+                <span>{f.l}</span>
+              </div>
+            ))}
+          </div>
+          <ul className="mini-list" aria-hidden>
+            {t.exp.items.map((it, i) => (
+              <li key={it.k} className={i <= cur ? 'on' : ''}>
+                {it.k}
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
     </section>
   )

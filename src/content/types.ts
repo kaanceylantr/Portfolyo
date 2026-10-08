@@ -45,6 +45,8 @@ export interface Dict {
     title: string
     sub: string
     reward: string
+    log: string
+    done: string
     items: {
       id: 'draw' | 'hybrid' | 'stock' | 'robot'
       type: string
@@ -92,6 +94,9 @@ export interface Dict {
     hp: string
     intro: string
     hit: string
+    how: string
+    steps: string[]
+    skillsTitle: string
     skills: { name: string; note: string }[]
     skip: string
     winTitle: string
@@ -110,6 +115,8 @@ export interface Dict {
     refs: string
     codexDone: string
     top: string
+    trophies: string
+    locked: string
   }
   exp: {
     eyebrow: string
@@ -117,6 +124,8 @@ export interface Dict {
     role: string
     axis: [string, string]
     items: { k: string; t: string; d: string; stat?: { n: string; l: string } }[]
+    side: { title: string; now: string; note: string }
+    facts: { n: string; l: string }[]
   }
   skills: {
     eyebrow: string
@@ -125,6 +134,9 @@ export interface Dict {
     equip: string
     equipped: string
     count: (n: number, total: number) => string
+    slots: string
+    empty: string
+    sideNote: string
     cards: { rarity: string; name: string; tag: string; items: string[] }[]
   }
 }
