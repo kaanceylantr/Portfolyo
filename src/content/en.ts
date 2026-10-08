@@ -41,13 +41,57 @@ export const en: Dict = {
   chapters: {
     hero: 'Boot',
     about: 'Tutorial',
+    prime: 'Prime Path',
   },
   ach: {
     unlocked: 'Achievement unlocked',
     items: {
       explorer: 'Explorer — you started scrolling',
       student: 'Quick Learner — tutorial complete',
+      solver: 'Puzzle Solver — you cracked a Prime Path level',
     },
+  },
+  prime: {
+    title: 'Prime Path',
+    sub: 'A mathematical logic puzzle — designed, built and shipped solo.',
+    chip: 'Live on Google Play · playtesting',
+    facts: [
+      { n: '290', l: 'line production GDD' },
+      { n: '2×2 → 5×5', l: 'boards, every level provably solvable' },
+      { n: '1–10', l: 'automatic difficulty rating' },
+      { n: '13', l: 'stage tutorial curriculum' },
+    ],
+    trapsTitle: 'Cognitive traps',
+    traps: [
+      { t: 'Fork / greed', d: 'The tempting route that dead-ends.' },
+      { t: 'Blocked transit', d: 'Cells you can see but cannot cross.' },
+      { t: 'Mirror', d: 'Symmetry that lies about the answer.' },
+      { t: 'Center contention', d: 'Every path wants the same cell.' },
+    ],
+    shotsTitle: 'From the store',
+    shotSoon: 'Screenshot slot',
+    stack: 'React 19 · TypeScript · Capacitor · Supabase · Firebase',
+  },
+  demo: {
+    title: 'Try it',
+    level: 'Level',
+    rule: 'Step to a neighbouring cell. The two numbers you step between must add up to a prime. Reach the goal.',
+    start: 'start',
+    goal: 'goal',
+    idle: 'Tap a neighbouring cell. Tap the last cell again to undo — no penalty.',
+    win: 'Solved! That is the only path — the solver checked.',
+    stuck: 'Dead end. Tap Undo — no penalty in the tutorial.',
+    undo: 'Undo',
+    reset: 'Reset',
+    solver: 'Show solver',
+    errors: {
+      blocked: 'That cell is blocked.',
+      visited: 'You already crossed that cell.',
+      far: 'Only neighbouring cells.',
+      sum: 'Those two numbers do not add up to a prime.',
+    },
+    stats: (s, d, n, df) =>
+      `Solver: ${s} solution · ${d} dead ends · ${n} states searched · difficulty ${df}/10`,
   },
   soon: {
     title: 'Next level loading…',

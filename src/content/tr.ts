@@ -41,13 +41,57 @@ export const tr: Dict = {
   chapters: {
     hero: 'Açılış',
     about: 'Eğitim',
+    prime: 'Prime Path',
   },
   ach: {
     unlocked: 'Başarım kazanıldı',
     items: {
       explorer: 'Kâşif — kaydırmaya başladın',
       student: 'Hızlı Öğrenen — eğitimi bitirdin',
+      solver: 'Bulmaca Çözücü — bir Prime Path seviyesini çözdün',
     },
+  },
+  prime: {
+    title: 'Prime Path',
+    sub: 'Matematiksel bir mantık bulmacası: tasarladım, geliştirdim ve tek başıma yayına aldım.',
+    chip: 'Google Play’de canlı · playtest',
+    facts: [
+      { n: '290', l: 'satırlık üretim GDD’si' },
+      { n: '2×2 → 5×5', l: 'tahtalar, her seviye kanıtlanmış çözülebilir' },
+      { n: '1–10', l: 'otomatik zorluk puanı' },
+      { n: '13', l: 'aşamalı eğitim müfredatı' },
+    ],
+    trapsTitle: 'Bilişsel tuzaklar',
+    traps: [
+      { t: 'Çatal / açgözlülük', d: 'Cazip görünen ama çıkmaza giden yol.' },
+      { t: 'Kapalı geçit', d: 'Görüp de geçemediğin hücreler.' },
+      { t: 'Ayna', d: 'Cevap hakkında yalan söyleyen simetri.' },
+      { t: 'Merkez çekişmesi', d: 'Bütün yollar aynı hücreyi ister.' },
+    ],
+    shotsTitle: 'Mağazadan',
+    shotSoon: 'Ekran görüntüsü yeri',
+    stack: 'React 19 · TypeScript · Capacitor · Supabase · Firebase',
+  },
+  demo: {
+    title: 'Dene',
+    level: 'Seviye',
+    rule: 'Komşu bir hücreye geç. Arasından geçtiğin iki sayının toplamı asal olmalı. Hedefe ulaş.',
+    start: 'başla',
+    goal: 'hedef',
+    idle: 'Komşu bir hücreye dokun. Geri almak için son hücreye tekrar dokun, ceza yok.',
+    win: 'Çözdün! Tek yol buydu, çözücü doğruladı.',
+    stuck: 'Çıkmaz sokak. Geri Al’a bas, eğitimde ceza yok.',
+    undo: 'Geri Al',
+    reset: 'Sıfırla',
+    solver: 'Çözücüyü göster',
+    errors: {
+      blocked: 'Bu hücre kapalı.',
+      visited: 'Bu hücreden zaten geçtin.',
+      far: 'Sadece komşu hücreler.',
+      sum: 'Bu iki sayının toplamı asal değil.',
+    },
+    stats: (s, d, n, df) =>
+      `Çözücü: ${s} çözüm · ${d} çıkmaz · ${n} durum tarandı · zorluk ${df}/10`,
   },
   soon: {
     title: 'Sıradaki seviye yükleniyor…',

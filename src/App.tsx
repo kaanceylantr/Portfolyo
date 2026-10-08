@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { initScroll } from './engine/scroll'
 import { useStore } from './app/store'
@@ -8,6 +8,8 @@ import { Hud } from './ui/Hud'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { CHAPTERS } from './content/chapters'
+
+const PrimePath = lazy(() => import('./sections/PrimePath'))
 
 export default function App() {
   const setChapter = useStore((s) => s.setChapter)
@@ -23,6 +25,7 @@ export default function App() {
         onToggle: (self) => {
           if (!self.isActive) return
           setChapter(i)
+          document.documentElement.dataset.chapter = id
           if (i > 0) unlock('explorer')
         },
       }),
@@ -49,6 +52,11 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <div className="chapter-slot" data-chapter="prime">
+          <Suspense fallback={<div style={{ minHeight: '100svh' }} />}>
+            <PrimePath />
+          </Suspense>
+        </div>
       </main>
     </>
   )
