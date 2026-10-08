@@ -574,7 +574,18 @@ main:focus { outline: none; }
 .foot .social + .ghost { margin-top: 10px; }
 
 /* ---------- contact ---------- */
-.hud-contact { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; padding: 8px 16px; border-radius: 999px; text-decoration: none; background: var(--accent); color: var(--accent-ink); }
+.hud-contact {
+  font-size: 12px; font-weight: 800; letter-spacing: 0.06em; padding: 8px 16px; border-radius: 999px;
+  text-decoration: none; background: var(--accent); color: var(--accent-ink);
+  transition: all 0.25s ease; white-space: nowrap;
+}
+.hud-contact.revealed { font-size: 11px; letter-spacing: 0.02em; padding: 8px 14px; }
 .hud-contact:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .hero-links { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
-@media (max-width: 600px) { .hud-chapter { display: none; } .hud { gap: 10px; } .hud .lang { margin-left: 0; } .hud-contact { margin-right: auto; } }
+.cta.revealed { font-size: 12px; letter-spacing: 0.02em; }
+@media (max-width: 600px) {
+  .hud-chapter { display: none; }
+  .hud { gap: 10px; }
+  .hud .lang { margin-left: 0; }
+  .hud-contact { margin-right: auto; max-width: min(220px, 48vw); overflow: hidden; text-overflow: ellipsis; }
+}

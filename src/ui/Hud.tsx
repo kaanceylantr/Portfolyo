@@ -3,11 +3,12 @@ import { CODEX_PRIMES, useStore } from '../app/store'
 import { useT } from '../app/i18n'
 import { CHAPTERS } from '../content/chapters'
 import { onFrame, scroll } from '../engine/scroll'
-import { MAIL } from '../content/links'
+import { useContactMail } from './useContactMail'
 
 export function Hud() {
   const t = useT()
   const { lang, setLang, sound, setSound, chapter, toast, clearToast, codex } = useStore()
+  const contact = useContactMail()
   const bar = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,8 +38,13 @@ export function Hud() {
           </span>
           <b>{t.chapters[id]}</b>
         </div>
-        <a className="hud-contact" href={`mailto:${MAIL}`}>
-          {t.nav.contact}
+        <a
+          className={`hud-contact${contact.revealed ? ' revealed' : ''}`}
+          href={contact.href}
+          onClick={contact.handleClick}
+          title={contact.revealed ? `Mail: ${contact.mail}` : t.nav.contact}
+        >
+          {contact.revealed ? contact.mail : t.nav.contact}
         </a>
         {codex.length > 0 && (
           <span className="codex-pill" title={t.codex.title} aria-label={`${t.codex.title} ${codex.length}/${CODEX_PRIMES.length}`}>
