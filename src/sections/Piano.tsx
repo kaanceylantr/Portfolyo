@@ -7,22 +7,53 @@ interface Key {
   note: string
   freq: number
   black: boolean
-  /** left offset in white-key units (black keys sit between whites) */
+  /** left offset in white-key units (0 to 14) */
   at: number
   kb: string
 }
 
-// one octave, C4 to C5
+// 2 octaves: C4 to C6 (15 white keys, 10 black keys)
 const WHITE: [string, number, string][] = [
-  ['C', 261.63, 'a'], ['D', 293.66, 's'], ['E', 329.63, 'd'], ['F', 349.23, 'f'],
-  ['G', 392.0, 'g'], ['A', 440.0, 'h'], ['B', 493.88, 'j'], ['C', 523.25, 'k'],
+  // Octave 4
+  ['C', 261.63, 'a'],
+  ['D', 293.66, 's'],
+  ['E', 329.63, 'd'],
+  ['F', 349.23, 'f'],
+  ['G', 392.0, 'g'],
+  ['A', 440.0, 'h'],
+  ['B', 493.88, 'j'],
+  // Octave 5
+  ['C', 523.25, 'k'],
+  ['D', 587.33, 'l'],
+  ['E', 659.25, 'z'],
+  ['F', 698.46, 'x'],
+  ['G', 783.99, 'c'],
+  ['A', 880.0, 'v'],
+  ['B', 987.77, 'b'],
+  // High C (Octave 6)
+  ['C', 1046.5, 'n'],
 ]
+
 const BLACK: [string, number, number, string][] = [
-  ['C#', 277.18, 0, 'w'], ['D#', 311.13, 1, 'e'], ['F#', 369.99, 3, 't'], ['G#', 415.3, 4, 'y'], ['A#', 466.16, 5, 'u'],
+  // Octave 4
+  ['C#', 277.18, 1, 'w'],
+  ['D#', 311.13, 2, 'e'],
+  ['F#', 369.99, 4, 't'],
+  ['G#', 415.3, 5, 'y'],
+  ['A#', 466.16, 6, 'u'],
+  // Octave 5
+  ['C#', 554.37, 8, 'o'],
+  ['D#', 622.25, 9, 'p'],
+  ['F#', 739.99, 11, '1'],
+  ['G#', 830.61, 12, '2'],
+  ['A#', 932.33, 13, '3'],
 ]
+
+const TOTAL_WHITE = 15
+
 const KEYS: Key[] = [
   ...WHITE.map(([note, freq, kb], i) => ({ note, freq, black: false, at: i, kb })),
-  ...BLACK.map(([note, freq, i, kb]) => ({ note, freq, black: true, at: i + 1, kb })),
+  ...BLACK.map(([note, freq, at, kb]) => ({ note, freq, black: true, at, kb })),
 ]
 
 export function Piano() {
@@ -64,21 +95,23 @@ export function Piano() {
         <b>{t.interests.piano.title}</b>
         <span className="blk-state">{sound ? '♪' : '♪̸'}</span>
       </div>
-      <div className="keys" role="group" aria-label={t.interests.piano.title}>
-        {KEYS.map((k) => (
-          <button
-            key={k.note + k.at}
-            className={`key ${k.black ? 'black' : 'white'}${lit[k.note + k.at] ? ' lit' : ''}`}
-            style={{ left: `${(k.at / 8) * 100}%` }}
-            onPointerDown={(e) => {
-              e.preventDefault()
-              press(k)
-            }}
-            aria-label={k.note}
-          >
-            <span>{k.kb.toUpperCase()}</span>
-          </button>
-        ))}
+      <div className="keys-wrap">
+        <div className="keys" role="group" aria-label={t.interests.piano.title}>
+          {KEYS.map((k) => (
+            <button
+              key={k.note + k.at}
+              className={`key ${k.black ? 'black' : 'white'}${lit[k.note + k.at] ? ' lit' : ''}`}
+              style={{ left: `${(k.at / TOTAL_WHITE) * 100}%` }}
+              onPointerDown={(e) => {
+                e.preventDefault()
+                press(k)
+              }}
+              aria-label={k.note}
+            >
+              <span>{k.kb.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
       </div>
       <p className="blk-hint">{t.interests.piano.hint}</p>
     </div>
