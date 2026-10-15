@@ -292,8 +292,8 @@ export const en: Dict = {
       },
       {
         k: 'Feedback',
-        t: 'Shaping the design through honest feedback.',
-        d: 'I took an active part in design feedback on both games. On Battle Gears I reviewed boss and ad work. On Cartel Warfare I gave meta design feedback on how progression and rewards feel to play.',
+        t: 'Shaping the design through honest feedback and close teamwork.',
+        d: 'I took an active part in design feedback on both games. On Battle Gears I reviewed boss and ad work. On Cartel Warfare I gave meta design feedback on how progression and rewards feel to play. I worked closely with developers and artists, translating design intent into clear briefs and keeping everyone aligned on what the player should feel.',
       },
       {
         k: 'Balance',

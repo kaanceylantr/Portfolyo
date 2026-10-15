@@ -292,8 +292,8 @@ export const tr: Dict = {
       },
       {
         k: 'Geri bildirim',
-        t: 'Dürüst geri bildirimlerle tasarımı şekillendirdim.',
-        d: 'İki oyunun tasarım geri bildirim süreçlerinde aktif rol aldım. Battle Gears’ta boss ve reklam işlerini inceledim. Cartel Warfare’de ilerleme ve ödüllerin oynanırken nasıl hissettirdiği üzerine meta tasarım geri bildirimleri verdim.',
+        t: 'Dürüst geri bildirim ve yakın ekip çalışması.',
+        d: 'İki oyunun tasarım geri bildirim süreçlerinde aktif rol aldım. Battle Gears’ta boss ve reklam işlerini inceledim. Cartel Warfare’de ilerleme ve ödüllerin oynanırken nasıl hissettirdiği üzerine meta tasarım geri bildirimleri verdim. Developer’lar ve artist’lerle yakın çalıştım; tasarım niyetini net brief’lere çevirdim ve herkesin oyuncunun ne hissetmesi gerektiği konusunda aynı noktada olmasını sağladım.',
       },
       {
         k: 'Denge',
