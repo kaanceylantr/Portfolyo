@@ -7,7 +7,6 @@ import { reducedMotion } from '../engine/perf'
 import { audio } from '../engine/audio'
 import { CodexPrime } from '../ui/CodexPrime'
 import { LINKS, MAIL } from '../content/links'
-import { useContactMail } from '../ui/useContactMail'
 
 const MAX = 5
 const COOLDOWN = 2.4
@@ -124,7 +123,6 @@ export default function BossSection() {
   }
 
   const mailto = `mailto:${MAIL}?subject=${encodeURIComponent(t.boss.subject)}&body=${encodeURIComponent(t.boss.body)}`
-  const contact = useContactMail(mailto)
 
   return (
     <section ref={root} className="boss">
@@ -162,12 +160,10 @@ export default function BossSection() {
               <p>{t.boss.winText}</p>
               <div className="win-actions">
                 <a
-                  className={`cta${contact.revealed ? ' revealed' : ''}`}
-                  href={contact.href}
-                  onClick={contact.handleClick}
-                  title={contact.revealed ? `Mail: ${contact.mail}` : t.boss.mail}
+                  className="cta"
+                  href={mailto}
                 >
-                  {contact.revealed ? contact.mail : t.boss.mail}
+                  {t.boss.mail}
                 </a>
                 {LINKS.map((l) => (
                   <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">

@@ -2,13 +2,11 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useT } from '../app/i18n'
 import { reducedMotion } from '../engine/perf'
-import { LINKS } from '../content/links'
-import { useContactMail } from '../ui/useContactMail'
+import { LINKS, MAIL } from '../content/links'
 
 export function Hero() {
   const t = useT()
   const root = useRef<HTMLElement>(null)
-  const contact = useContactMail()
 
   useEffect(() => {
     if (reducedMotion) return
@@ -36,12 +34,10 @@ export function Hero() {
         <p className="hero-tag">{t.hero.tagline}</p>
         <div className="hero-links">
           <a
-            className={`cta${contact.revealed ? ' revealed' : ''}`}
-            href={contact.href}
-            onClick={contact.handleClick}
-            title={contact.revealed ? `Mail: ${contact.mail}` : t.nav.contact}
+            className="cta"
+            href={`mailto:${MAIL}`}
           >
-            {contact.revealed ? contact.mail : t.nav.contact}
+            {t.nav.contact}
           </a>
           {LINKS.map((l) => (
             <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">
