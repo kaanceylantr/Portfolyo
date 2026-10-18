@@ -5,6 +5,7 @@ import { useT } from './app/i18n'
 import { useStore } from './app/store'
 import { World } from './ui/World'
 import { CodexPrime } from './ui/CodexPrime'
+import { ContactDialog } from './ui/ContactDialog'
 import { Sky } from './ui/Sky'
 import { Board } from './ui/Board'
 import { Hud } from './ui/Hud'
@@ -96,6 +97,7 @@ export default function App() {
         <Board />
       </div>
       <Hud />
+      <ContactDialog />
       <main id="main" tabIndex={-1}>
         <Hero />
         <About />

@@ -41,6 +41,9 @@ interface State {
   ach: string[]
   codex: number[]
   toast: Toast | null
+  contact: { subject?: string; body?: string } | null
+  openContact: (c?: { subject?: string; body?: string }) => void
+  closeContact: () => void
   setLang: (l: Lang) => void
   setSound: (on: boolean) => void
   setChapter: (i: number) => void
@@ -61,6 +64,9 @@ export const useStore = create<State>((set, get) => {
     ach: saved.ach ?? [],
     codex: saved.codex ?? [],
     toast: null,
+    contact: null,
+    openContact: (c = {}) => set({ contact: c }),
+    closeContact: () => set({ contact: null }),
     setLang: (lang) => {
       document.documentElement.lang = lang
       persist({ lang })

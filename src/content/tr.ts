@@ -1,6 +1,15 @@
 import type { Dict } from './types'
 
 export const tr: Dict = {
+  contactBox: {
+    title: 'Merhaba de',
+    sub: 'Bana bu adresten yazabilirsin. Kopyala ya da doğrudan Gmail’de veya mail uygulamanda aç.',
+    copy: 'Adresi kopyala',
+    copied: 'Kopyalandı ✓',
+    gmail: 'Gmail’de aç',
+    app: 'Mail uygulamasında aç',
+    close: 'Kapat',
+  },
   meta: {
     title: 'Kaan Ceylan — Oyun Tasarımcısı ve Bilgisayar Mühendisi',
     description: 'Kaan Ceylan’ın interaktif portfolyosu: oyun tasarımı, seviye temposu, ekonomi ve mobil bulmaca oyunu Prime Path. Kaydırarak oyna.',

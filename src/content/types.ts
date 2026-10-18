@@ -2,6 +2,7 @@ import type { World } from './chapters'
 
 export interface Dict {
   meta: { title: string; description: string; skip: string }
+  contactBox: { title: string; sub: string; copy: string; copied: string; gmail: string; app: string; close: string }
   worldLabel: string
   worlds: Record<World, string>
   nav: { chapter: string; sound: string; contact: string }

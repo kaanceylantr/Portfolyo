@@ -589,3 +589,17 @@ main:focus { outline: none; }
   .hud .lang { margin-left: 0; }
   .hud-contact { margin-right: auto; max-width: min(220px, 48vw); overflow: hidden; text-overflow: ellipsis; }
 }
+
+/* ---------- contact dialog ---------- */
+.hud-contact { border: 0; cursor: pointer; font-family: inherit; }
+.skip { background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
+.cbox-back { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(5, 10, 24, 0.6); }
+.cbox { position: relative; width: min(460px, 100%); padding: 28px 24px 22px; border-radius: var(--r); background: var(--glass-solid); border: var(--bw) solid var(--glass-edge); box-shadow: var(--lift); color: var(--ink); }
+.cbox h2 { font-size: 1.5rem; font-weight: var(--hw); }
+.cbox-sub { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--body); }
+.cbox-mail { margin-top: 16px; padding: 12px 14px; border-radius: var(--r-sm); background: var(--glass); border: 1px solid var(--glass-edge); font-size: 1.05rem; font-weight: 700; word-break: break-all; user-select: all; }
+.cbox-actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.cbox-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; }
+.cbox-links a { color: var(--accent); font-weight: 700; text-decoration: none; }
+.cbox-x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--glass-edge); background: var(--glass); color: var(--ink); cursor: pointer; }
+.cbox-x:focus-visible, .cbox .cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

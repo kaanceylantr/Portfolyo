@@ -1,6 +1,15 @@
 import type { Dict } from './types'
 
 export const en: Dict = {
+  contactBox: {
+    title: 'Say hello',
+    sub: 'Write to me at this address. Copy it, or open it straight in Gmail or your mail app.',
+    copy: 'Copy address',
+    copied: 'Copied ✓',
+    gmail: 'Open in Gmail',
+    app: 'Open mail app',
+    close: 'Close',
+  },
   meta: {
     title: 'Kaan Ceylan — Game Designer & Computer Engineer',
     description: 'Interactive portfolio of Kaan Ceylan: game design, level pacing, economy and the mobile puzzle game Prime Path. Scroll to play through it.',

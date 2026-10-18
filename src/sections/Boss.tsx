@@ -6,7 +6,7 @@ import { useStore } from '../app/store'
 import { reducedMotion } from '../engine/perf'
 import { audio } from '../engine/audio'
 import { CodexPrime } from '../ui/CodexPrime'
-import { LINKS, MAIL } from '../content/links'
+import { LINKS } from '../content/links'
 
 const MAX = 5
 const COOLDOWN = 2.4
@@ -122,7 +122,8 @@ export default function BossSection() {
     setCool([false, false, false, false])
   }
 
-  const mailto = `mailto:${MAIL}?subject=${encodeURIComponent(t.boss.subject)}&body=${encodeURIComponent(t.boss.body)}`
+  const openContact = useStore((st) => st.openContact)
+  const hello = () => openContact({ subject: t.boss.subject, body: t.boss.body })
 
   return (
     <section ref={root} className="boss">
@@ -159,12 +160,12 @@ export default function BossSection() {
               <h4>{t.boss.winTitle}</h4>
               <p>{t.boss.winText}</p>
               <div className="win-actions">
-                <a
+                <button
                   className="cta"
-                  href={mailto}
+                  onClick={hello}
                 >
                   {t.boss.mail}
-                </a>
+                </button>
                 {LINKS.map((l) => (
                   <a key={l.label} className="ghost" href={l.href} target="_blank" rel="noreferrer">
                     {l.label} ↗
@@ -198,9 +199,9 @@ export default function BossSection() {
             ))}
           </div>
           {!won && (
-            <a className="skip" href={mailto}>
+            <button className="skip" onClick={hello}>
               {t.boss.skip} →
-            </a>
+            </button>
           )}
         </aside>
       </div>
