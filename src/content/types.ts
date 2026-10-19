@@ -141,4 +141,4 @@ export interface Dict {
     cards: { rarity: string; name: string; tag: string; items: string[] }[]
   }
 }
-export type Lang = 'tr' | 'en'
+export type Lang = 'en' | 'tr' | 'fr'

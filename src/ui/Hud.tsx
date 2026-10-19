@@ -65,7 +65,7 @@ export function Hud() {
           </svg>
         </button>
         <div className="lang" role="group" aria-label="Language">
-          {(['tr', 'en'] as const).map((l) => (
+          {(['en', 'tr', 'fr'] as const).map((l) => (
             <button key={l} aria-pressed={lang === l} onClick={() => setLang(l)}>
               {l.toUpperCase()}
             </button>

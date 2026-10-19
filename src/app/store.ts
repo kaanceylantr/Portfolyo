@@ -30,7 +30,9 @@ function save(p: Persisted) {
 }
 
 const saved = load()
-const initialLang: Lang = saved.lang ?? (navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en')
+// English by default for every visitor; a language they pick themselves is remembered.
+const LANGS: Lang[] = ['en', 'tr', 'fr']
+const initialLang: Lang = saved.lang && LANGS.includes(saved.lang) ? saved.lang : 'en'
 
 export type Toast = { kind: 'ach'; id: string } | { kind: 'codex'; prime: number; n: number }
 
