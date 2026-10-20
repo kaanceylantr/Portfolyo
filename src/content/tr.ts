@@ -274,11 +274,11 @@ export const tr: Dict = {
   exp: {
     eyebrow: 'Deneyim',
     title: 'Gnarly Game Studio',
-    role: 'Oyun Tasarımcısı · Temmuz – Ekim 2026',
+    role: 'Oyun Tasarımcısı',
     axis: ['sakin', 'gergin'],
     side: { title: 'Gerilim göstergesi', now: 'Şimdi', note: 'Örnekleyici: her iş türünün ne kadar yoğun hissettirdiği, eğri üzerinde gösterildi.' },
     facts: [
-      { n: '4 ay', l: 'Temmuz – Ekim 2026' },
+
       { n: '10 → 1', l: 'önerilen boss mekaniği → oyuna giren' },
       { n: '2', l: 'oyun: sıra tabanlı bir oyun ve canlı bir cover-shooter' },
     ],

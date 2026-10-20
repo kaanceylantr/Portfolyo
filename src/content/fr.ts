@@ -274,11 +274,11 @@ export const fr: Dict = {
   exp: {
     eyebrow: 'Expérience',
     title: 'Gnarly Game Studio',
-    role: 'Game Designer · juillet – octobre 2026',
+    role: 'Game Designer',
     axis: ['calme', 'intense'],
     side: { title: 'Jauge de tension', now: 'En ce moment', note: 'Illustratif : l’intensité ressentie de chaque type de travail, placée sur la courbe.' },
     facts: [
-      { n: '4 mois', l: 'juillet – octobre 2026' },
+
       { n: '10 → 1', l: 'mécaniques de boss proposées → intégrées' },
       { n: '2', l: 'jeux : un jeu au tour par tour et un cover-shooter en ligne' },
     ],

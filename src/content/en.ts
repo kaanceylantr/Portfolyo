@@ -274,11 +274,11 @@ export const en: Dict = {
   exp: {
     eyebrow: 'Experience',
     title: 'Gnarly Game Studio',
-    role: 'Game Designer · July – October 2026',
+    role: 'Game Designer',
     axis: ['calm', 'intense'],
     side: { title: 'Tension readout', now: 'Now', note: 'Illustrative: how intense each kind of work felt, plotted on the curve.' },
     facts: [
-      { n: '4 mo', l: 'July – October 2026' },
+
       { n: '10 → 1', l: 'boss mechanics pitched → shipped' },
       { n: '2', l: 'titles: a turn-based game and a live cover-shooter' },
     ],
