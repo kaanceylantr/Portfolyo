@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 import { Piano } from './Piano'
 import { Keepy } from './Keepy'
 import { Poem } from './Poem'
@@ -10,6 +11,7 @@ import { Poem } from './Poem'
 export default function Interests() {
   const t = useT()
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
 
   useEffect(() => {
     ScrollTrigger.refresh()

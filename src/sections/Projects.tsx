@@ -3,11 +3,13 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 import { DrawDemo } from './DrawDemo'
 
 export default function Projects() {
   const t = useT()
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
 
   useEffect(() => {
     ScrollTrigger.refresh()

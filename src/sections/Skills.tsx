@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { useStore } from '../app/store'
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 
 const ICON = ['◆', '✦', '⬢', '◎']
 
@@ -11,6 +12,7 @@ export default function Skills() {
   const t = useT()
   const unlock = useStore((s) => s.unlock)
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
   const [on, setOn] = useState<Set<number>>(new Set())
   const total = t.skills.cards.length
 

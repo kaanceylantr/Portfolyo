@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 
 /** Player tension per card (0 calm → 1 intense); this shapes the pacing curve. */
 const TENSION = [0.3, 0.92, 0.15, 0.55, 0.85, 0.35, 0.7]
@@ -37,6 +37,7 @@ function buildGeo(list: HTMLElement, gutter: number): Geo {
 export default function Experience() {
   const t = useT()
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
   const list = useRef<HTMLOListElement>(null)
   const svg = useRef<SVGSVGElement>(null)
   const path = useRef<SVGPathElement>(null)
@@ -55,18 +56,6 @@ export default function Experience() {
     ro.observe(list.current!)
     return () => ro.disconnect()
   }, [t])
-
-  // reveal cards
-  useEffect(() => {
-    if (reducedMotion) return
-    const ctx = gsap.context(() => {
-      gsap.from('.ex-head > *', {
-        y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
-        scrollTrigger: { trigger: '.ex-head', start: 'top 85%' },
-      })
-    }, root)
-    return () => ctx.revert()
-  }, [])
 
   // draw the curve with the scroll; light cards as the dot passes them
   useEffect(() => {

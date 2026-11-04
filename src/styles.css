@@ -55,13 +55,19 @@ html.lenis, html.lenis body { height: auto; }
   background: var(--xp-grad);
 }
 .toast {
-  position: fixed; z-index: 11; left: 50%; bottom: 22px; translate: -50% 16px; opacity: 0; pointer-events: none;
-  display: flex; flex-direction: column; gap: 2px; padding: 12px 20px; border-radius: 16px; font-size: 13px;
+  position: fixed; z-index: 11; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); translate: -50% 16px; opacity: 0; pointer-events: none;
+  display: flex; flex-direction: column; gap: 2px; padding: 10px 18px; border-radius: 16px; font-size: 13px;
+  width: max-content; max-width: calc(100vw - 32px); scale: 0.96;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   background: var(--glass-solid); border: 1px solid var(--glass-edge);
   box-shadow: 0 10px 40px var(--shadow);
-  transition: opacity 0.4s, translate 0.4s;
+  transition: opacity 0.45s, translate 0.6s cubic-bezier(0.22, 1, 0.36, 1), scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.toast.show { opacity: 1; translate: -50% 0; }
+.toast.show { opacity: 1; translate: -50% 0; scale: 1; }
+@media (max-width: 760px) {
+  .toast { padding: 8px 14px; font-size: 12px; border-radius: 14px; gap: 0; }
+  .toast > span { font-size: 9px; }
+}
 .toast span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ---------- sections ---------- */
@@ -88,7 +94,8 @@ main { position: relative; z-index: 1; padding: 0 clamp(16px, 5vw, 72px); max-wi
 @keyframes cue { 0%,100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
 
 .about { padding: 12vh 0 10vh; position: relative; }
-.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 5vh; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 5vh; display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--accent); flex: none; }
 .steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 9vh; max-width: min(50vw, 560px); }
 .step {
   padding: 28px 28px 30px; border-radius: var(--r);
@@ -255,9 +262,10 @@ html:not([data-world='space']) .board-wrap { opacity: 0; }
 .ex-wrap { position: relative; --gutter: 84px; min-width: 0; }
 .ex-curve { position: absolute; left: 0; top: 0; width: var(--gutter); overflow: visible; pointer-events: none; }
 .ex-axis {
-  position: absolute; left: 0; top: -26px; width: var(--gutter); display: flex; justify-content: space-between;
+  position: absolute; left: 0; top: -26px; display: flex; gap: 6px; white-space: nowrap;
   font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
 }
+.ex-axis span:first-child::after { content: ' →'; letter-spacing: 0; }
 .ex-track, .ex-line { fill: none; stroke-width: 3; stroke-linecap: round; }
 .ex-track { stroke: color-mix(in srgb, var(--accent) 25%, transparent); }
 .ex-line { stroke: var(--accent); stroke-dashoffset: 0; }
@@ -362,7 +370,10 @@ html:not([data-world='space']) .board-wrap { opacity: 0; }
 }
 
 /* ---------- Interests: rest room ---------- */
-html[data-chapter='interests'] .board-wrap { opacity: 0.16; }
+html[data-chapter='interests'] .board-wrap { opacity: 0; }
+@media (max-width: 760px) {
+  html[data-chapter]:not([data-chapter='hero']) .board-wrap { opacity: 0; }
+}
 html[data-chapter='credits'] .board-wrap { opacity: 0; }
 .interests { padding: 8vh 0 14vh; }
 .in-head { margin-bottom: 5vh; }
@@ -603,3 +614,17 @@ main:focus { outline: none; }
 .cbox-links a { color: var(--accent); font-weight: 700; text-decoration: none; }
 .cbox-x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--glass-edge); background: var(--glass); color: var(--ink); cursor: pointer; }
 .cbox-x:focus-visible, .cbox .cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- polish ---------- */
+h1, h2, h3, h4, .ex-title { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); }
+button, a { -webkit-tap-highlight-color: transparent; }
+.cta, .ghost, .perk-btn, .demo-actions button, .lang button, .snd, .hud-contact {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+@media (hover: hover) {
+  .cta:hover, .ghost:hover, .hud-contact:hover { transform: translateY(-2px); box-shadow: 0 10px 28px var(--shadow); }
+}
+.cta:active, .ghost:active, .perk-btn:active, .demo-actions button:active, .hud-contact:active { transform: scale(0.96); }
+.head-line { display: block; overflow: hidden; }

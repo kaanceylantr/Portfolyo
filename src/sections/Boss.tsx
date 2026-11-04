@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useT } from '../app/i18n'
 import { useStore } from '../app/store'
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 import { audio } from '../engine/audio'
 import { CodexPrime } from '../ui/CodexPrime'
 import { LINKS } from '../content/links'
@@ -50,6 +51,7 @@ export default function BossSection() {
   const unlock = useStore((s) => s.unlock)
   const sound = useStore((s) => s.sound)
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
   const arena = useRef<HTMLDivElement>(null)
   const [hp, setHp] = useState(MAX)
   const [hurt, setHurt] = useState(false)

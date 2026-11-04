@@ -47,8 +47,8 @@ export function Board() {
         g.addColorStop(0, 'rgba(160,210,255,0.6)')
         g.addColorStop(1, 'rgba(80,140,225,0.5)')
       } else if (blocked) {
-        g.addColorStop(0, 'rgba(70,90,130,0.5)')
-        g.addColorStop(1, 'rgba(40,58,96,0.45)')
+        g.addColorStop(0, 'rgba(40,58,96,0.32)')
+        g.addColorStop(1, 'rgba(24,36,66,0.3)')
       } else {
         g.addColorStop(0, 'rgba(120,165,230,0.2)')
         g.addColorStop(1, 'rgba(70,110,180,0.12)')
@@ -58,33 +58,35 @@ export function Board() {
       ctx.roundRect(x, y, s, s, s * 0.22)
       ctx.fill()
 
-      // crystal facet
-      ctx.fillStyle = `rgba(200,225,255,${0.05 + shimmer * 0.07 + (lit ? 0.12 : 0)})`
+      // soft top gloss instead of a hard facet
+      const gl = ctx.createLinearGradient(x, y, x, y + s * 0.5)
+      gl.addColorStop(0, `rgba(210,232,255,${0.1 + shimmer * 0.06 + (lit ? 0.14 : 0)})`)
+      gl.addColorStop(1, 'rgba(210,232,255,0)')
+      ctx.fillStyle = gl
       ctx.beginPath()
-      ctx.moveTo(x + s * 0.12, y + s * 0.12)
-      ctx.lineTo(x + s * 0.88, y + s * 0.12)
-      ctx.lineTo(x + s * 0.5, y + s * 0.5)
-      ctx.closePath()
+      ctx.roundRect(x + 2, y + 2, s - 4, s * 0.5, [s * 0.2, s * 0.2, s * 0.08, s * 0.08])
       ctx.fill()
 
       ctx.lineWidth = 1.2
-      ctx.strokeStyle = lit ? 'rgba(130,205,255,0.9)' : 'rgba(140,190,255,0.28)'
+      ctx.strokeStyle = lit ? 'rgba(130,205,255,0.9)' : blocked ? 'rgba(140,170,215,0.16)' : 'rgba(140,190,255,0.26)'
       ctx.beginPath()
       ctx.roundRect(x, y, s, s, s * 0.22)
       ctx.stroke()
 
       if (blocked) {
-        ctx.strokeStyle = 'rgba(120,150,195,0.6)'
-        ctx.lineWidth = 2
-        const m = s * 0.3
+        // a quiet sealed stone: small inset diamond
+        const cx = x + s / 2
+        const cy = y + s / 2
+        const m = s * 0.11
+        ctx.fillStyle = 'rgba(150,175,215,0.32)'
         ctx.beginPath()
-        ctx.moveTo(x + m, y + m)
-        ctx.lineTo(x + s - m, y + s - m)
-        ctx.moveTo(x + s - m, y + m)
-        ctx.lineTo(x + m, y + s - m)
-        ctx.stroke()
+        ctx.moveTo(cx, cy - m)
+        ctx.lineTo(cx + m, cy)
+        ctx.lineTo(cx, cy + m)
+        ctx.lineTo(cx - m, cy)
+        ctx.closePath()
+        ctx.fill()
       }
-
     }
 
     // glowing path trail

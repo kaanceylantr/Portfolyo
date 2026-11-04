@@ -127,18 +127,29 @@
 .p3 { right: 12vw; top: 40vh; width: 18vmax; animation-duration: 90s; animation-direction: alternate-reverse; }
 @keyframes puffdrift { to { transform: translate3d(14vw, 0, 0); } }
 
-/* ---------- world title card ---------- */
+/* ---------- world title banner: slides in under the HUD, never covers content ---------- */
+.worlds-in { position: absolute; inset: -24px; will-change: transform; }
 .world-card {
-  position: fixed; z-index: 20; left: 50%; top: 42%; translate: -50% -50%; pointer-events: none; text-align: center;
-  display: flex; flex-direction: column; gap: 4px; padding: 18px 34px; border-radius: var(--r);
-  background: var(--glass-solid); border: var(--bw) solid var(--glass-edge); box-shadow: var(--lift);
-  animation: wcard 2.2s ease both;
+  position: fixed; z-index: 9; left: 50%; top: 84px; translate: -50% 0; pointer-events: none;
+  display: flex; align-items: center; gap: 14px; white-space: nowrap;
+  padding: 9px 20px; border-radius: 999px;
+  background: var(--glass-solid); border: 1px solid var(--glass-edge); box-shadow: 0 12px 36px var(--shadow);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  animation: wcard 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-.world-card small { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); }
-.world-card b { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: var(--hw); color: var(--ink); letter-spacing: -0.01em; }
+.world-card span { display: flex; align-items: baseline; gap: 10px; }
+.world-card i { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent)); transform-origin: right; animation: wline 2.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.world-card i:last-child { background: linear-gradient(270deg, transparent, var(--accent)); transform-origin: left; }
+.world-card small { font-size: 10px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--accent); }
+.world-card b { font-size: clamp(0.95rem, 2vw, 1.15rem); font-weight: var(--hw); color: var(--ink); letter-spacing: 0.02em; }
 @keyframes wcard {
-  0% { opacity: 0; transform: translateY(14px) scale(0.96); }
-  22%, 70% { opacity: 1; transform: none; }
-  100% { opacity: 0; transform: translateY(-10px) scale(1.02); }
+  0% { opacity: 0; transform: translateY(-10px); filter: blur(6px); }
+  18%, 72% { opacity: 1; transform: none; filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
 }
-@media (prefers-reduced-motion: reduce) { .world-card { animation-duration: 1.6s; } }
+@keyframes wline { 0% { transform: scaleX(0); } 30%, 72% { transform: scaleX(1); } 100% { transform: scaleX(0); opacity: 0; } }
+@media (max-width: 760px) {
+  .world-card { top: 76px; gap: 8px; padding: 7px 14px; }
+  .world-card i { width: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .world-card, .world-card i { animation-duration: 1.6s; } }

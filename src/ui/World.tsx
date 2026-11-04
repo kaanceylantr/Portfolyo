@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { useStore } from '../app/store'
 import { useT } from '../app/i18n'
 import { CHAPTERS, CHAPTER_WORLD, WORLDS, type World as WorldId } from '../content/chapters'
-import { reducedMotion } from '../engine/perf'
+import { lite, reducedMotion } from '../engine/perf'
 import { audio } from '../engine/audio'
 
 /** Where the reveal wipe starts for each world. */
@@ -185,6 +185,21 @@ export function World() {
   const current = useRef<WorldId>('space')
   const z = useRef(1)
   const [card, setCard] = useState<{ world: WorldId; key: number } | null>(null)
+  const wrap = useRef<HTMLDivElement>(null)
+
+  // gentle depth: the backdrop drifts a few pixels against the pointer (desktop only)
+  useEffect(() => {
+    if (reducedMotion || lite || !matchMedia('(pointer: fine)').matches) return
+    const el = wrap.current!
+    const x = gsap.quickTo(el, 'x', { duration: 1.4, ease: 'power3.out' })
+    const y = gsap.quickTo(el, 'y', { duration: 1.4, ease: 'power3.out' })
+    const move = (e: PointerEvent) => {
+      x((e.clientX / innerWidth - 0.5) * -18)
+      y((e.clientY / innerHeight - 0.5) * -12)
+    }
+    addEventListener('pointermove', move, { passive: true })
+    return () => removeEventListener('pointermove', move)
+  }, [])
 
   useEffect(() => {
     const next = CHAPTER_WORLD[CHAPTERS[Math.min(chapter, CHAPTERS.length - 1)]]
@@ -222,6 +237,7 @@ export function World() {
   return (
     <>
       <div className="worlds" aria-hidden>
+        <div ref={wrap} className="worlds-in">
         {WORLDS.map((w) => (
           <div
             key={w}
@@ -233,13 +249,18 @@ export function World() {
             {SCENES[w]()}
           </div>
         ))}
+        </div>
       </div>
       {card && (
-        <div key={card.key} className="world-card" onAnimationEnd={() => setCard(null)} aria-hidden>
-          <small>
-            {t.worldLabel} {WORLDS.indexOf(card.world) + 1}
-          </small>
-          <b>{t.worlds[card.world]}</b>
+        <div key={card.key} className="world-card" onAnimationEnd={(e) => e.target === e.currentTarget && setCard(null)} aria-hidden>
+          <i />
+          <span>
+            <small>
+              {t.worldLabel} {WORLDS.indexOf(card.world) + 1}
+            </small>
+            <b>{t.worlds[card.world]}</b>
+          </span>
+          <i />
         </div>
       )}
     </>

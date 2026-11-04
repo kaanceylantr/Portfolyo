@@ -6,6 +6,7 @@ import { CODEX_PRIMES, useStore } from '../app/store'
 
 const TROPHIES = ['explorer', 'student', 'solver', 'fullbuild', 'bridge', 'pianist', 'striker', 'poet', 'codex', 'hired']
 import { reducedMotion } from '../engine/perf'
+import { useTitleReveal } from '../engine/useTitleReveal'
 import { LINKS } from '../content/links'
 
 export default function Credits() {
@@ -14,6 +15,7 @@ export default function Credits() {
   const ach = useStore((s) => s.ach)
   const codex = useStore((s) => s.codex)
   const root = useRef<HTMLElement>(null)
+  useTitleReveal(root)
 
   useEffect(() => {
     ScrollTrigger.refresh()
