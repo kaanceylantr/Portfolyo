@@ -61,35 +61,26 @@
 [data-world='obsidian'] .ex-title, [data-world='obsidian'] .prime-head h2 { text-transform: uppercase; letter-spacing: 0.01em; }
 [data-world='village'] .ex-title, [data-world='village'] .prime-head h2 { letter-spacing: -0.01em; }
 
-/* smooth token swaps on the big surfaces */
-.step, .ex-card, .perk, .demo, .facts div, .traps li, .toast, .lang, .hud-logo, .chip, .tg, .quest {
-  transition: background-color 0.45s, border-color 0.45s, color 0.45s, box-shadow 0.45s, opacity 0.5s, transform 0.5s;
-}
+/* no colour transitions on token swaps: they would restyle the whole page every frame; the backdrop crossfade hides the swap */
 
 /* ---------- layers ---------- */
 .worlds { position: fixed; inset: 0; z-index: -3; overflow: hidden; background: var(--bg-solid); }
 .w-layer { position: absolute; inset: 0; display: none; overflow: hidden; }
-.w-layer.on { display: block; }
+.w-layer.on { display: block; will-change: opacity; contain: strict; }
 .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cloud { position: absolute; border-radius: 50%; will-change: transform; animation: drift 38s ease-in-out infinite alternate; }
-@keyframes drift { to { transform: translate3d(6vw, 3vh, 0) scale(1.08); } }
-@keyframes bobby { to { transform: translate3d(0, -26px, 0) rotate(2deg); } }
-.bob { animation: bobby 9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; will-change: transform; }
-.bob.b2 { animation-duration: 11s; animation-delay: -3s; }
-.bob.b3 { animation-duration: 13s; animation-delay: -6s; }
-.bob.b4 { animation-duration: 10s; animation-delay: -2s; }
+/* svg-internal motion forces a full repaint every frame, so the scenes stay still; motion comes from composited layers */
 
 /* 1 · open space: calm twilight cosmos, soft nebula glows and a dim ringed planet */
 .w-space {
   background:
+    radial-gradient(30vmax 18vmax at 15vmax 10vmax, rgba(90, 140, 255, 0.28), transparent),
+    radial-gradient(27vmax 17vmax at 88% calc(18vh + 17vmax), rgba(80, 200, 210, 0.2), transparent),
+    radial-gradient(35vmax 20vmax at calc(10vw + 35vmax) 100%, rgba(110, 120, 255, 0.22), transparent),
+    radial-gradient(20vmax 13vmax at calc(100% - 8vw - 20vmax) calc(100% - 4vh - 13vmax), rgba(90, 170, 255, 0.18), transparent),
     radial-gradient(90% 60% at 82% 8%, #1f3d70 0%, transparent 62%),
     radial-gradient(80% 60% at 8% 92%, #12404f 0%, transparent 62%),
     linear-gradient(180deg, #0a1226 0%, #0e1d3b 55%, #0a2a3a 100%);
 }
-.w-space .c1 { width: 60vmax; height: 36vmax; left: -15vmax; top: -8vmax; background: radial-gradient(closest-side, rgba(90, 140, 255, 0.28), transparent); }
-.w-space .c2 { width: 55vmax; height: 34vmax; right: -18vmax; top: 18vh; background: radial-gradient(closest-side, rgba(80, 200, 210, 0.2), transparent); animation-duration: 46s; }
-.w-space .c3 { width: 70vmax; height: 40vmax; left: 10vw; bottom: -18vmax; background: radial-gradient(closest-side, rgba(110, 120, 255, 0.22), transparent); animation-duration: 52s; }
-.w-space .c4 { width: 40vmax; height: 26vmax; right: 8vw; bottom: 4vh; background: radial-gradient(closest-side, rgba(90, 170, 255, 0.18), transparent); animation-duration: 34s; }
 .planet {
   position: absolute; left: -10vmax; bottom: -14vmax; width: 42vmax; height: 42vmax; border-radius: 50%; opacity: 0.7;
   background: radial-gradient(circle at 34% 30%, #5f93c8 0%, #2c5a92 50%, #14305a 100%);
@@ -102,18 +93,15 @@
 /* 2 · crystal realm: iridescent shards on an icy sky */
 .w-crystal {
   background:
+    radial-gradient(28vmax 17vmax at 16vmax 11vmax, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(25vmax 15vmax at calc(100% + 14vmax - 25vmax) calc(100% + 8vmax - 15vmax), rgba(150, 205, 240, 0.55), transparent),
     radial-gradient(100% 70% at 85% 10%, #bcd3f3 0%, transparent 60%),
     radial-gradient(90% 70% at 10% 90%, #c7c6ee 0%, transparent 60%),
     linear-gradient(160deg, #d0d9f3 0%, #bfcded 55%, #b8d3ec 100%);
 }
-.w-crystal .c1 { width: 56vmax; height: 34vmax; left: -12vmax; top: -6vmax; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.4), transparent); }
-.w-crystal .c2 { width: 50vmax; height: 30vmax; right: -14vmax; bottom: -8vmax; background: radial-gradient(closest-side, rgba(150, 205, 240, 0.55), transparent); animation-duration: 44s; }
 
 /* 3 · obsidian caldera: black glass, lava glow, embers */
 .w-obsidian { background: linear-gradient(180deg, #08060a 0%, #140c10 60%, #26100d 100%); }
-@keyframes heat { from { opacity: 0.6; } to { opacity: 1; } }
-.heat { animation: heat 3.4s ease-in-out infinite alternate; }
-.crater { animation: heat 2.2s ease-in-out infinite alternate; }
 
 /* 4 · tiny village: chibi hills, castle, puffy clouds */
 .w-village { background: linear-gradient(180deg, #a6dcf8 0%, #d3f0ff 55%, #fff0cf 100%); }
@@ -134,7 +122,6 @@
   display: flex; align-items: center; gap: 14px; white-space: nowrap;
   padding: 9px 20px; border-radius: 999px;
   background: var(--glass-solid); border: 1px solid var(--glass-edge); box-shadow: 0 12px 36px var(--shadow);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   animation: wcard 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .world-card span { display: flex; align-items: baseline; gap: 10px; }

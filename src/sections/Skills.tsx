@@ -41,10 +41,10 @@ export default function Skills() {
     const r = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - r.left) / r.width - 0.5
     const y = (e.clientY - r.top) / r.height - 0.5
-    e.currentTarget.style.transform = `perspective(700px) rotateX(${-y * 7}deg) rotateY(${x * 9}deg)`
+    gsap.to(e.currentTarget, { rotationX: -y * 7, rotationY: x * 9, transformPerspective: 700, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
   }
   const untilt = (e: React.PointerEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.transform = ''
+    gsap.to(e.currentTarget, { rotationX: 0, rotationY: 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' })
   }
 
   return (

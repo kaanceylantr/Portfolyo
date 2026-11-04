@@ -8,11 +8,17 @@ type Draw = (ctx: CanvasRenderingContext2D, w: number, h: number, time: number) 
  * Sizes a canvas to its CSS box (DPR-capped), drives it from the shared ticker,
  * and pauses while off-screen. Under reduced motion it only redraws on scroll/resize.
  */
-export function useCanvas(draw: Draw, opts: { alwaysLive?: boolean } = {}) {
+export function useCanvas(
+  draw: Draw,
+  opts: { alwaysLive?: boolean; maxDpr?: number; key?: () => string | number } = {},
+) {
   const ref = useRef<HTMLCanvasElement>(null)
   const drawRef = useRef(draw)
   drawRef.current = draw
   const live = opts.alwaysLive
+  const maxDpr = opts.maxDpr ?? Infinity
+  const keyRef = useRef(opts.key)
+  keyRef.current = opts.key
 
   useEffect(() => {
     const canvas = ref.current!
@@ -22,10 +28,11 @@ export function useCanvas(draw: Draw, opts: { alwaysLive?: boolean } = {}) {
     let visible = true
     let dirty = true
     let lastY = -1
+    let lastKey: string | number | undefined
 
     const resize = () => {
       const r = canvas.getBoundingClientRect()
-      const d = dpr()
+      const d = Math.min(dpr(), maxDpr)
       w = r.width
       h = r.height
       canvas.width = Math.round(w * d)
@@ -42,7 +49,13 @@ export function useCanvas(draw: Draw, opts: { alwaysLive?: boolean } = {}) {
 
     const off = onFrame((t) => {
       if (!visible || !w) return
-      if (reducedMotion && !live) {
+      // on-demand canvases only repaint when their key changes
+      if (keyRef.current) {
+        const k = keyRef.current()
+        if (!dirty && k === lastKey) return
+        lastKey = k
+        dirty = false
+      } else if (reducedMotion && !live) {
         if (!dirty && scroll.y === lastY) return
         lastY = scroll.y
         dirty = false
@@ -56,7 +69,7 @@ export function useCanvas(draw: Draw, opts: { alwaysLive?: boolean } = {}) {
       ro.disconnect()
       io.disconnect()
     }
-  }, [])
+  }, [maxDpr])
 
   return ref
 }

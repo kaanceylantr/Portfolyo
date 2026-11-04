@@ -79,7 +79,7 @@ export function Sky() {
       ctx.quadraticCurveTo(x, y, x, y - r * 2)
       ctx.fill()
     }
-  })
+  }, { maxDpr: 1.25 })
 
   return <canvas ref={ref} className="sky-canvas" aria-hidden />
 }

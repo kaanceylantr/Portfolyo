@@ -45,7 +45,7 @@ export const tr: Dict = {
       {
         k: 'Stüdyo',
         t: 'Gnarly Game Studio.',
-        d: 'Seviye tasarımı, 20 adet boss mekaniği, rakip araştırması, playable reklam analizi ve son aşamalardaki bir oyunda ilerleme sistemleri.',
+        d: 'İki oyunda Game Designer: Cartel Warfare’da tek başıma kurduğum bir chapter, Battle Gears için on boss önerisi (biri oyuna girdi), reklam ve rakip analizi, perk dengesi ve QA; geliştirici ve artistlerle omuz omuza.',
       },
       {
         k: 'Veri',

@@ -45,7 +45,7 @@ export const fr: Dict = {
       {
         k: 'Studio',
         t: 'Gnarly Game Studio.',
-        d: 'Level design, 20 mécaniques de boss, analyse de la concurrence, analyse des playable ads et systèmes de progression sur un jeu en phase avancée.',
+        d: 'Game Designer sur deux titres : un chapitre de Cartel Warfare conçu seul, dix propositions de boss pour Battle Gears (une intégrée au jeu), études pub et concurrence, équilibrage des perks et QA, main dans la main avec développeurs et artistes.',
       },
       {
         k: 'Données',

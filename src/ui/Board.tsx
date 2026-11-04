@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import { useCanvas } from '../engine/useCanvas'
 import { scroll } from '../engine/scroll'
-import { lite, reducedMotion } from '../engine/perf'
 import { makeBoard } from '../game/grid'
 
 function ease(x: number) {
@@ -12,7 +11,7 @@ function ease(x: number) {
 export function Board() {
   const board = useMemo(() => makeBoard(), [])
 
-  const ref = useCanvas((ctx, w, h, t) => {
+  const ref = useCanvas((ctx, w, h) => {
     if (document.documentElement.dataset.world !== 'space') return
     const n = board.size
     const pad = 18
@@ -39,7 +38,6 @@ export function Board() {
       const step = stepOf.get(i)
       const lit = step !== undefined && step <= reached
       const blocked = board.blocked.has(i)
-      const shimmer = reducedMotion || lite ? 0 : 0.5 + 0.5 * Math.sin(t * 0.8 + i * 0.9)
 
       // glass body
       const g = ctx.createLinearGradient(x, y, x + s, y + s)
@@ -60,7 +58,7 @@ export function Board() {
 
       // soft top gloss instead of a hard facet
       const gl = ctx.createLinearGradient(x, y, x, y + s * 0.5)
-      gl.addColorStop(0, `rgba(210,232,255,${0.1 + shimmer * 0.06 + (lit ? 0.14 : 0)})`)
+      gl.addColorStop(0, `rgba(210,232,255,${0.13 + (lit ? 0.14 : 0)})`)
       gl.addColorStop(1, 'rgba(210,232,255,0)')
       ctx.fillStyle = gl
       ctx.beginPath()
@@ -144,6 +142,9 @@ export function Board() {
       ctx.fillStyle = 'rgba(225,242,255,0.97)'
       ctx.fillText(label, c.x + cell * 0.2, c.y - cell * 0.2)
     }
+  }, {
+    // a static board: repaint only when the scroll moves the path or the world changes
+    key: () => `${document.documentElement.dataset.world}|${scroll.progress.toFixed(4)}`,
   })
 
   return <canvas ref={ref} className="board-canvas" aria-hidden />

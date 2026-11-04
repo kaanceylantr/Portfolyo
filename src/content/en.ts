@@ -45,7 +45,7 @@ export const en: Dict = {
       {
         k: 'Studio',
         t: 'Gnarly Game Studio.',
-        d: 'Level design, 20 boss mechanics, competitor research, playable-ad analytics and progression systems on a late-stage game.',
+        d: 'Game Designer on two titles: a solo-built Cartel Warfare chapter, ten Battle Gears boss pitches (one shipped), ad and competitor research, perk balance and QA, side by side with developers and artists.',
       },
       {
         k: 'Data',

@@ -6,21 +6,9 @@ import { CHAPTERS, CHAPTER_WORLD, WORLDS, type World as WorldId } from '../conte
 import { lite, reducedMotion } from '../engine/perf'
 import { audio } from '../engine/audio'
 
-/** Where the reveal wipe starts for each world. */
-const ORIGIN: Record<WorldId, string> = {
-  space: '50% 30%',
-  crystal: '80% 15%',
-  obsidian: '50% 100%',
-  village: '50% 55%',
-}
-
 function Space() {
   return (
     <>
-      <i className="cloud c1" />
-      <i className="cloud c2" />
-      <i className="cloud c3" />
-      <i className="cloud c4" />
       <i className="planet" />
     </>
   )
@@ -29,8 +17,6 @@ function Space() {
 function Crystal() {
   return (
     <>
-      <i className="cloud c1" />
-      <i className="cloud c2" />
       <svg className="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden>
         <defs>
           <linearGradient id="kg1" x1="0" y1="0" x2="1" y2="1">
@@ -212,7 +198,6 @@ export function World() {
     }
     const settle = () => {
       WORLDS.forEach((w) => w !== next && layers.current[w]?.classList.remove('on'))
-      el.style.clipPath = ''
     }
     setCard({ world: next, key: Date.now() })
     if (useStore.getState().sound) audio.whoosh()
@@ -224,14 +209,10 @@ export function World() {
       settle()
       return
     }
-    const at = ORIGIN[next]
+    // opacity only: a pure compositor dissolve, no repaint of the big scene while it runs
     gsap.killTweensOf(el)
-    gsap.fromTo(
-      el,
-      { clipPath: `circle(0% at ${at})` },
-      { clipPath: `circle(150% at ${at})`, duration: 1.1, ease: 'power2.inOut', onComplete: settle },
-    )
-    gsap.delayedCall(0.4, setWorld)
+    gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power1.inOut', onComplete: settle, clearProps: 'opacity' })
+    gsap.delayedCall(0.3, setWorld)
   }, [chapter])
 
   return (
